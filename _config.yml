@@ -30,7 +30,7 @@ twitter_username: ttoledo_js
 github_username:  nugetchar
 
 # Build settings
-theme: minima
+theme: jekyll-theme-merlot
 plugins:
   - jekyll-feed
 
