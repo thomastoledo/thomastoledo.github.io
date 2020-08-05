@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Why I used semantic HTML"
+title:  "Why I use semantic HTML"
 date:   2019-11-18 12:15:11 +0200
 categories: html semantic web
 ---
