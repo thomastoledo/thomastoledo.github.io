@@ -40,7 +40,7 @@ function displayName(name) {
 }
 
 // We want the execution to be done at least 1s after the last execution
-const throttled = throttle(displayName, 1000);
+const throttled = throttle((name) => displayName(name), 1000);
 throttled('Thomas'); // will execute displayName and display 'Thomas'
 setTimeout(() => throttled('Bastien'), 1500); // will execute displayName and display 'Bastien'
 throttled('Antoine'); // will not execute displayName
@@ -64,7 +64,7 @@ function displayName(name) {
 }
 
 // We want the execution to be done at least 1s after the last execution
-const debounced = debounce(displayName, 1000);
+const debounced = debounce((name) => displayName(name), 1000);
 
 debounced('Thomas'); // (1) SHOULD execute displayName and display 'Thomas' AFTER 1s
 setTimeout(() => debounced('Bastien'), 1500); // (2) will trigger after 1.5s, execute displayName and display 'Bastien'
@@ -81,12 +81,12 @@ function treatment() {
   }
 }
 
-window.onresize = debounce(treatment);
+window.onresize = debounce(() => treatment(), 100);
 ```
 
 ### Operators implementation
 
-I found the implementation in the excellent book (Discover Functional JavaScript)[https://www.freecodecamp.org/news/discover-functional-programming-in-javascript-with-this-thorough-introduction-a2ad9af2d645/] by [**Cristian Salcescu**](https://twitter.com/cristi_salcescu).
+I found the implementation in the excellent book [Discover Functional JavaScript](https://www.freecodecamp.org/news/discover-functional-programming-in-javascript-with-this-thorough-introduction-a2ad9af2d645/) by [**Cristian Salcescu**](https://twitter.com/cristi_salcescu).
 
 #### Throttle
 
