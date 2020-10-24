@@ -1,20 +1,24 @@
 ---
 layout: post
-title:  "JS Warmup - Observables"
-date:   2020-10-24 15:00:00 +0200
+title: "JS Warmup - Observables"
+date: 2020-10-24 15:00:00 +0200
 categories: code javascript warm-up exercises Observables
 ---
+
 # JS Warmup
 
 ![ça va bien se passer](https://media.giphy.com/media/jqeTaaiD3rLKE/giphy.gif)
 
-*Ça va bien se passer*
+_Ça va bien se passer_
 
 ## Exercice 1 - On commence doucement
-Codez une fonction `sum` prenant un nombre indéfini de paramètres et retournant la somme des nombres. 
+
+Codez une fonction `sum` prenant un nombre indéfini de paramètres et retournant la somme des nombres.
 
 ## Exercice 2 - Escalade Véloce 🚀
+
 ### 2A
+
 Ecrivez une fonction `isFunction` qui prend un paramètre et qui vérifie qu'il s'agisse bien d'une fonction. Aidez vous de l'opérateur [`typeof`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Op%C3%A9rateurs/L_op%C3%A9rateur_typeof).
 
 `isFunction` devra fonctionne comme suit :
@@ -30,7 +34,8 @@ isFunction(nombre); // retourne false
 ```
 
 ### 2B
-Ecrivez une fonction `filterNonFunctions` qui prend en paramètre un nombre indéfini d'arguments sous la forme d'un *rest parameter* et qui retourne un tableau ne contenant **que** les arguments étant des fonctions.
+
+Ecrivez une fonction `filterNonFunctions` qui prend en paramètre un nombre indéfini d'arguments sous la forme d'un _rest parameter_ et qui retourne un tableau ne contenant **que** les arguments étant des fonctions.
 Pour cela, aidez-vous de la méthode `filter` du prototype `Array`.
 
 Elle devra fonctionner comme suit :
@@ -44,16 +49,11 @@ const functions = filterNonFunctions(f1, nombre, f2); // [f1, f2]
 ```
 
 ### 2C
-Ecrivez désormais une fonction `pipe` qui fonctionne comme suit :
-	- nombre indéfini de fonctions en entrée ;
-	- filtre les arguments qui ne sont pas des fonctions ;
-	- stocke le tableau résultant du filtre ;
-	- retourne une nouvelle fonction
-		- prenant un nombre indéfini d'arguments ;
-		- exécute chaque fonction `n` en lui passant en argument le résultat de l'appel `n - 1` ;
-		- retourne le résultat final. 
+
+Ecrivez désormais une fonction `pipe` qui fonctionne comme suit : - nombre indéfini de fonctions en entrée ; - filtre les arguments qui ne sont pas des fonctions ; - stocke le tableau résultant du filtre ; - retourne une nouvelle fonction - prenant un nombre indéfini d'arguments ; - exécute chaque fonction `n` en lui passant en argument le résultat de l'appel `n - 1` ; - retourne le résultat final.
 
 Exemple :
+
 ```js
 // On a des fonctions de base
 const multiply = (x, y) => x * y;
@@ -63,7 +63,7 @@ const addTen = (z) => z + 10;
 
 // pipe prend un nombre indéfini de fonctions en argument
 // Ici, on crée trois nouvelles fonctions
-const piped1 = pipe(multiply, square, double, addTen); 
+const piped1 = pipe(multiply, square, double, addTen);
 const piped2 = pipe(square, double);
 const piped3 = pipe();
 
@@ -79,11 +79,12 @@ const result2 = piped2(4);
 const result3 = piped3();
 
 console.log(result1); // affiche 86
-console.log(result2); // affiche 32 
+console.log(result2); // affiche 32
 console.log(result3); // undefined
 ```
 
 ## Exercice 3 - Same, but different
+
 Ecrivez une fonction `compose` qui fonctionne comme suit :
 
 ```js
@@ -102,15 +103,16 @@ const result1 = composed1(2);
 const result2 = composed2(4);
 
 console.log(result1); // affiche 1728
-console.log(result2); // affiche 64 
+console.log(result2); // affiche 64
 ```
-*Indice : `compose` est le pendant de `pipe` : au lieu d'exécuter les fonctions dans l'ordre passé, elle les exécute dans l'ordre inverse (type `f(g(x))`)*
+
+_Indice : `compose` est le pendant de `pipe` : au lieu d'exécuter les fonctions dans l'ordre passé, elle les exécute dans l'ordre inverse (type `f(g(x))`)_
 
 ## Exercice 4 - Promises et Observables
 
 ### 4A
-Allez lire la documentation sur [les Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) avant de faire l'exercice.
 
+Allez lire la documentation sur [les Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) avant de faire l'exercice.
 
 Ecrivez une fonction `delay` qui fonctionne comme suit :
 
@@ -124,87 +126,97 @@ const multiply = (x, y) => x * y;
 const delayed = delay(multiply, 2000);
 delayed(3, 4).then((res) => console.log(res)); // affichera 12 après 2s
 ```
+
 ### 4B
-On a la classe suivante : 
+
+On a la classe suivante :
+
 ```js
 class Observable {
-   // rest parameters
-   constructor(...args) {
-      // on ne fait pas "this.values"
-	  // afin que le champ reste privé
-	  let values = args;
-	  // idem avec subscribers, qui sera un tableau de fonctions
-	  const subscribers = [];
-	  // la méthode "next" prend des rest parameters en entrée
-	  this.next = (...vals) => {
-		  // elle met à jours "values"
-		  values = [...vals];
-		  // et déclenche tous les traitements avec ces nouvelles valeurs
-		  subscribers.forEach((f) => f(...values));
-	  };
-	  // "subscribe" enregistre simplement une nouvelle fonction
-	  // qui sera exécutée à la prochaine valeur émise par "next"
-	  this.subscribe = (f) => {subscribers.push(f)}; 
-	}
+  // rest parameters
+  constructor(...args) {
+    // on ne fait pas "this.values"
+    // afin que le champ reste privé
+    let values = args;
+    // idem avec subscribers, qui sera un tableau de fonctions
+    const subscribers = [];
+    // la méthode "next" prend des rest parameters en entrée
+    this.next = (...vals) => {
+      // elle met à jours "values"
+      values = [...vals];
+      // et déclenche tous les traitements avec ces nouvelles valeurs
+      subscribers.forEach((f) => f(...values));
+    };
+    // "subscribe" enregistre simplement une nouvelle fonction
+    // qui sera exécutée à la prochaine valeur émise par "next"
+    this.subscribe = (f) => {
+      subscribers.push(f);
+    };
+  }
 }
 ```
+
 En vous aidant de cette classe, écrivez une fonction `debounce` de sorte à ce que le code suivant fonctionne :
 
 ```js
-const square = (x) => x**2;
+const square = (x) => x ** 2;
 
 // "debounce" prend une fonction ainsi qu'un timeout en paramètre
 // et retourne un Observable
 const debounced = debounce(square, 1000);
 
-const subscriber = (res) => console.log('res', res);
+const subscriber = (res) => console.log("res", res);
 
 // (1) DEVRAIT exécuter square après 1s et afficher 9
-debounced(3).subscribe((res) => console.log('res', res));
+debounced(3).subscribe((res) => console.log("res", res));
 // (2) se déclenchera après 1.5s, exécutera square et affichera 4
 setTimeout(() => debounced(2), 1500);
 debounced(10); // (3) annulera l'appel (1) et relancera un nouveau timeout
 ```
 
 Indices :
-- vous pouvez vous aider de [cet article](https://dev.to/nugetchar/debounce-and-throttle-47cd), écrit par votre humble intervenant. Par contre l'implémentation qui s'y trouve n'est pas *totalement* celle demandée ici 🙃.
+
+- vous pouvez vous aider de [cet article](https://dev.to/nugetchar/debounce-and-throttle-47cd), écrit par votre humble intervenant. Par contre l'implémentation qui s'y trouve n'est pas _totalement_ celle demandée ici 🙃.
 
 ### 4C
+
 Reprenez la fonction `delay` et, au lieu de retourner une `Promise`, retournez un `Observable`.
 
 ### 4D
+
 Dans la classe `Observable`, implémentez une méthode `pipe` : contrairement à la première fonction codée dans les précédents exercices, celle-ci ne retournera pas une fonction mais exécutera directement les fonctions passées en paramètre et retournera un `Observable` contenant le résultat.
 
 Le code suivant doit fonctionner :
+
 ```js
 class Observable {
   constructor(...args) {
     let values = args;
     const subscribers = [];
-    this.next = (...vals) => { 
-       values = [...vals]; 
-       subscribers.forEach((f) => f(...values));
+    this.next = (...vals) => {
+      values = [...vals];
+      subscribers.forEach((f) => f(...values));
     };
-    this.subscribe = (f) => { 
-	   subscribers.push(f); 
-	   f(...values);
-	 };
+    this.subscribe = (f) => {
+      subscribers.push(f);
+      f(...values);
+    };
     this.pipe = (...functions) => {
-	    // TODO: implémentez cette méthode
-	    // Pensez à filtrer les arguments qui ne sont pas des fonctions
-	    // Vous devez retourner un Observable comportant le résultat final
-	    // Pour le reste, c'est sensiblement pareil que la précédente
-	    // fonction pipe()
-    }
+      // TODO: implémentez cette méthode
+      // Pensez à filtrer les arguments qui ne sont pas des fonctions
+      // Vous devez retourner un Observable comportant le résultat final
+      // Pour le reste, c'est sensiblement pareil que la précédente
+      // fonction pipe()
+    };
   }
 }
 
-(new Observable(4))
-   .pipe(
-      (x) => x**2, 
-      (x) => ('' + x).split(''), 
-      (numbers) => numbers.map(x => +x),
-      (numbers) => numbers.reduce((acc, curr) => acc + curr, 0)
-    )
-   .subscribe((res) => console.log('resultat', res)); // 7
+new Observable(4)
+  .pipe(
+    (x) => x ** 2,
+    (x) => ("" + x).split(""),
+    (numbers) => numbers.map((x) => +x),
+    (numbers) => numbers.reduce((acc, curr) => acc + curr, 0)
+  )
+  .subscribe((res) => console.log("resultat", res)); // 7
 ```
