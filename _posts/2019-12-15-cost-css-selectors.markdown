@@ -2,7 +2,7 @@
 layout: post
 title:  "The cost of CSS selectors"
 date:   2019-12-15 12:15:11 +0200
-categories: css performance web webdev
+categories: [css]
 ---
 
 When writing CSS, you are likely to find yourself having to write some selectors. For instance, let us say you have the following HTML structure:

@@ -2,7 +2,7 @@
 layout: post
 title:  "Starting with AlpineJS"
 date:   2020-01-02 12:15:11 +0200
-categories: code javascript frontend alpinejs library
+categories: [alpinejs]
 ---
 
 

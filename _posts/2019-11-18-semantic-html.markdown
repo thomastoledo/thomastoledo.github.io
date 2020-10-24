@@ -2,7 +2,7 @@
 layout: post
 title:  "Why I use semantic HTML"
 date:   2019-11-18 12:15:11 +0200
-categories: html semantic web
+categories: [html]
 ---
 
 Wether you are a beginner, or an expert in development, there is one thing you are likely to forget when it comes to coding HTML documents, and that thing is **semantic HTML**.

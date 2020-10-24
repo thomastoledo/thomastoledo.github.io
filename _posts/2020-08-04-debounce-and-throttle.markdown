@@ -2,7 +2,7 @@
 layout: post
 title:  "Debounce and Throttle"
 date:   2020-08-04 23:15:11 +0200
-categories: code javascript performance frontend
+categories: [javascript]
 ---
 
 ### The problem
