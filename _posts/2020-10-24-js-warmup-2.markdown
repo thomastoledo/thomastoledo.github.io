@@ -5,7 +5,6 @@ date:   2020-10-24 15:00:00 +0200
 categories: code javascript warm-up exercises Observables
 ---
 # JS Warmup
-Voici quelques exercices que je donne à mes étudiant.e.s de deuxième année afin qu'ils ne perdent pas la main sur JS.
 
 ![ça va bien se passer](https://media.giphy.com/media/jqeTaaiD3rLKE/giphy.gif)
 
