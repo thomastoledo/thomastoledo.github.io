@@ -15,7 +15,8 @@ Voici quelques exercices que je donne à mes étudiant.e.s de deuxième année a
 Codez une fonction `sum` prenant un nombre indéfini de paramètres et retournant la somme des nombres. 
 
 ## Exercice 2 - Escalade Véloce 🚀
-1. Ecrivez une fonction `isFunction` qui prend un paramètre et qui vérifie qu'il s'agisse bien d'une fonction. Aidez vous de l'opérateur [`typeof`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Op%C3%A9rateurs/L_op%C3%A9rateur_typeof).
+### 2A
+Ecrivez une fonction `isFunction` qui prend un paramètre et qui vérifie qu'il s'agisse bien d'une fonction. Aidez vous de l'opérateur [`typeof`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Op%C3%A9rateurs/L_op%C3%A9rateur_typeof).
 
 `isFunction` devra fonctionne comme suit :
 
@@ -29,7 +30,8 @@ isFunction(f2); // retourne true
 isFunction(nombre); // retourne false
 ```
 
-2. Ecrivez une fonction `filterNonFunctions` qui prend en paramètre un nombre indéfini d'arguments sous la forme d'un *rest parameter* et qui retourne un tableau ne contenant **que** les arguments étant des fonctions.
+### 2B
+Ecrivez une fonction `filterNonFunctions` qui prend en paramètre un nombre indéfini d'arguments sous la forme d'un *rest parameter* et qui retourne un tableau ne contenant **que** les arguments étant des fonctions.
 Pour cela, aidez-vous de la méthode `filter` du prototype `Array`.
 
 Elle devra fonctionner comme suit :
@@ -42,7 +44,8 @@ const nombre = 12;
 const functions = filterNonFunctions(f1, nombre, f2); // [f1, f2]
 ```
 
-3. Ecrivez désormais une fonction `pipe` qui fonctionne comme suit :
+### 2C
+Ecrivez désormais une fonction `pipe` qui fonctionne comme suit :
 	- nombre indéfini de fonctions en entrée ;
 	- filtre les arguments qui ne sont pas des fonctions ;
 	- stocke le tableau résultant du filtre ;
@@ -106,7 +109,8 @@ console.log(result2); // affiche 64
 
 ## Exercice 4 - Promises et Observables
 
-1. Allez lire la documentation sur [les Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) avant de faire l'exercice.
+### 4A
+Allez lire la documentation sur [les Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) avant de faire l'exercice.
 
 
 Ecrivez une fonction `delay` qui fonctionne comme suit :
@@ -121,7 +125,8 @@ const multiply = (x, y) => x * y;
 const delayed = delay(multiply, 2000);
 delayed(3, 4).then((res) => console.log(res)); // affichera 12 après 2s
 ```
-2. On a la classe suivante : 
+### 4B
+On a la classe suivante : 
 ```js
 class Observable {
    // rest parameters
@@ -165,8 +170,11 @@ debounced(10); // (3) annulera l'appel (1) et relancera un nouveau timeout
 Indices :
 - vous pouvez vous aider de [cet article](https://dev.to/nugetchar/debounce-and-throttle-47cd), écrit par votre humble intervenant. Par contre l'implémentation qui s'y trouve n'est pas *totalement* celle demandée ici 🙃.
 
-3. Reprenez la fonction `delay` et, au lieu de retourner une `Promise`, retournez un `Observable`.
-4. Dans la classe `Observable`, implémentez une méthode `pipe` : contrairement à la première fonction codée dans les précédents exercices, celle-ci ne retournera pas une fonction mais exécutera directement les fonctions passées en paramètre et retournera un `Observable` contenant le résultat.
+### 4C
+Reprenez la fonction `delay` et, au lieu de retourner une `Promise`, retournez un `Observable`.
+
+### 4D
+Dans la classe `Observable`, implémentez une méthode `pipe` : contrairement à la première fonction codée dans les précédents exercices, celle-ci ne retournera pas une fonction mais exécutera directement les fonctions passées en paramètre et retournera un `Observable` contenant le résultat.
 
 Le code suivant doit fonctionner :
 ```js
