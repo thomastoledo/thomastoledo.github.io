@@ -2,7 +2,7 @@
 layout: post
 title: "JS Warmup - Observables"
 date: 2020-10-24 15:00:00 +0200
-categories: [code, javascript, warm-up, exercises, Observables]
+categories: [javascript]
 ---
 
 # JS Warmup
@@ -50,7 +50,15 @@ const functions = filterNonFunctions(f1, nombre, f2); // [f1, f2]
 
 ### 2C
 
-Ecrivez désormais une fonction `pipe` qui fonctionne comme suit : - nombre indéfini de fonctions en entrée ; - filtre les arguments qui ne sont pas des fonctions ; - stocke le tableau résultant du filtre ; - retourne une nouvelle fonction - prenant un nombre indéfini d'arguments ; - exécute chaque fonction `n` en lui passant en argument le résultat de l'appel `n - 1` ; - retourne le résultat final.
+Ecrivez désormais une fonction `pipe` qui fonctionne comme suit : 
+
+- nombre indéfini de fonctions en entrée ; 
+- filtre les arguments qui ne sont pas des fonctions ; 
+- stocke le tableau résultant du filtre ; 
+- retourne une nouvelle fonction 
+- prenant un nombre indéfini d'arguments ; 
+- exécute chaque fonction `n` en lui passant en argument le résultat de l'appel `n - 1` ; 
+- retourne le résultat final.
 
 Exemple :
 
