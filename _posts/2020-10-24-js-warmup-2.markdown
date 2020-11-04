@@ -176,7 +176,7 @@ const debounced = debounce(square, 1000);
 const subscriber = (res) => console.log("res", res);
 
 // (1) DEVRAIT exécuter square après 1s et afficher 9
-debounced(3).subscribe((res) => console.log("res", res));
+debounced(3).subscribe(subscriber);
 // (2) se déclenchera après 1.5s, exécutera square et affichera 4
 setTimeout(() => debounced(2), 1500);
 debounced(10); // (3) annulera l'appel (1) et relancera un nouveau timeout
