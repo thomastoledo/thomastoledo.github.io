@@ -15,6 +15,31 @@ _Ça va bien se passer_
 
 Codez une fonction `sum` prenant un nombre indéfini de paramètres et retournant la somme des nombres.
 
+Correction :
+
+```js
+// utilisation des rest paramters
+function sum(...number) {
+  // les rest parameters s'utilisent comme des tableaux
+  // on peut donc utiliser la méthode "reduce" du prototype Array
+  // pour faire la somme
+  return numbers.reduce((acc, curr) => acc + curr, 0);
+}
+```
+
+**Note : pour la méthode `reduce`**
+```js
+const tableau = [4, 5, 6];
+const reducerCallback = (accumulateur, valeurCourante) => { return accumulateur + valeurCourante }
+
+tableau.reduce(reducerCallback, 0); // ici, je spécifie la valeur de départ
+```
+- 1er tour de boucle : `accumulateur` vaut 0 (valeur de départ) et `valeurCourante` vaut 4 (première case du tableau) et `reducerCallback` retourne 4
+- 2ème tour de boucle : `accumulateur` vaut 0 + 4 = 4 et `valeurCourante` vaut 5 (deuxième case du tableau) et `reducerCallback` retourne 9
+- 3ème tour de boucle : `accumulateur` vaut 4 + 5 = 9 et `valeurCourante` vaut 6 (troisième case du tableau) et `reducerCallback` retourne 15
+- Après le troisième tour, c'est terminé, le tableau est parcouru.
+Et le résultat final est donc 15
+
 ## Exercice 2 - Escalade Véloce 🚀
 
 ### 2A
@@ -33,6 +58,15 @@ isFunction(f2); // retourne true
 isFunction(nombre); // retourne false
 ```
 
+Correction : 
+
+```js
+function isFunction(f) {
+  // un simple "typeof" suffit
+  return typeof f === 'function';
+}
+```
+
 ### 2B
 
 Ecrivez une fonction `filterNonFunctions` qui prend en paramètre un nombre indéfini d'arguments sous la forme d'un _rest parameter_ et qui retourne un tableau ne contenant **que** les arguments étant des fonctions.
@@ -46,6 +80,16 @@ function f2() {}
 const nombre = 12;
 
 const functions = filterNonFunctions(f1, nombre, f2); // [f1, f2]
+```
+
+Correction :
+
+```js
+function filterNonFunctions(...functions) {
+  // il suffit d'utiliser la méthode "filter"
+  // du prototype Array et la méthode isFunction précédemment écrite
+  return functions.filter(isFunction);
+}
 ```
 
 ### 2C
@@ -91,6 +135,27 @@ console.log(result2); // affiche 32
 console.log(result3); // undefined
 ```
 
+Correction : 
+
+```js
+function pipe(...functions) {
+  // d'abord on filtre les fonctions
+  const fns = filterNonFunctions(...functions);
+  // on retourne une nouvelle fonction
+  return (...args) => {
+    // si nous avons au moins une fonction
+    if (fns.length > 0) {
+      // on va faire un "reduce" un peu particulier
+      return fns // reduce uniquement sur le tableau moins son premier élément
+              .splice(1)
+              // "val" est l'accumulateur, et "f" la valeur courante
+              // fns[0](...args) est la valeur initiale
+              .reduce((val, f) => f(val), fns[0](...args));    
+    }
+  }
+};
+```
+
 ## Exercice 3 - Same, but different
 
 Ecrivez une fonction `compose` qui fonctionne comme suit :
@@ -116,6 +181,20 @@ console.log(result2); // affiche 64
 
 _Indice : `compose` est le pendant de `pipe` : au lieu d'exécuter les fonctions dans l'ordre passé, elle les exécute dans l'ordre inverse (type `f(g(x))`)_
 
+Correction : 
+
+```js
+function compose(...functions) {
+  const fns = filterNonFunctions(...functions);
+  return (...args) => {
+    if (fns.length > 0) {
+      // Pareil que pour "pipe", sauf qu'on "reverse" le tableau
+      return fns.reverse().splice(1).reduce((val, f) => f(val), fns[fns.length -1](...args));
+    }
+  }
+}
+```
+
 ## Exercice 4 - Promises et Observables
 
 ### 4A
@@ -133,6 +212,38 @@ const multiply = (x, y) => x * y;
 // - exécutera la fonction (ici multiply) après le timeout
 const delayed = delay(multiply, 2000);
 delayed(3, 4).then((res) => console.log(res)); // affichera 12 après 2s
+```
+
+Correction :
+
+```js
+function delay(fn, timeout) {
+  return (...args) => {
+
+    // Cette fonction sera passée au constructeur de la Promise
+    // Elle prend deux paramètres, resolve et reject : 
+    // https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Promise
+    const promiseCallback = (resolve, reject) => {
+
+      const timedOutFunction = () => {
+        let res;
+        // Le try...catch n'était pas demandé
+        // Je l'ai rajouté
+        try {
+          res = fn(...args);
+          resolve(res);
+        } catch (exception) {
+          reject(exception)
+        }
+      };
+
+      // On enclenche le setTimeout
+      setTimeout(timedOutFunction, timeout);
+    };
+
+    return new Promise(promiseCallback);
+  }
+}
 ```
 
 ### 4B
@@ -186,9 +297,38 @@ Indices :
 
 - vous pouvez vous aider de [cet article](https://dev.to/nugetchar/debounce-and-throttle-47cd), écrit par votre humble intervenant. Par contre l'implémentation qui s'y trouve n'est pas _totalement_ celle demandée ici 🙃.
 
+
+Correction : 
+
+```js
+function debounce(fn, timeout) {
+  let timer;
+  let obs = new Observable();
+  return (...args) => {
+    clearTimeout(timer);
+    // À la fin du timeout, on n'a plus qu'à donner la nouvelle valeur à l'Observable
+    timer = setTimeout(() => obs.next(fn(...args)), timeout)
+    // On retourne l'Observable
+    return obs;
+  }
+}
+```
+
 ### 4C
 
 Reprenez la fonction `delay` et, au lieu de retourner une `Promise`, retournez un `Observable`.
+
+Correction :
+
+```js
+function delay(fn, timeout) {
+  let obs = new Observable();
+  return (...args) => {
+    setTimeout(() => obs.next(fn(...args)), timeout);
+    return obs;
+  }
+}
+```
 
 ### 4D
 
@@ -227,4 +367,45 @@ new Observable(4)
     (numbers) => numbers.reduce((acc, curr) => acc + curr, 0)
   )
   .subscribe((res) => console.log("resultat", res)); // 7
+```
+
+
+Correction :
+
+
+```js
+class Observable {
+  constructor(...args) {
+    let values = args;
+
+    const subscribers = [];
+
+    this.next = (...vals) => {
+      values = [...vals];
+      subscribers.forEach((f) => f(...values));
+    };
+
+    this.subscribe = (f) => {
+      subscribers.push(f);
+      f(...values);
+    };
+
+    this.pipe = (...functions) => {
+      // on filtre les fonctions
+      const fns = filterNonFunctions(...functions);
+      const obs = new Observable();
+      // s'il en reste, alors on les exécute les unes à la suite des autres
+      if (fns.length > 0) {
+        const res = fns.splice(1).reduce((val, fn) => fn(val), fns[0](...values));
+        obs.next(res);
+      }
+      // on retourne l'Observable
+      return obs;
+    };
+
+    const filterNonFunctions = (...fns) => {
+      return fns.filter((f) => typeof f === 'function');
+    }
+  }
+}
 ```
