@@ -80,7 +80,7 @@ Dans le CodePen suivant, affectez les tailles de texte suivantes :
 - `2rem` pour les `h3` ;
 - `1.2rem` pour les `h4` ;
 
-(https://codepen.io/nugetchar/pen/dyXaLMr)[https://codepen.io/nugetchar/pen/dyXaLMr]
+[https://codepen.io/nugetchar/pen/dyXaLMr](https://codepen.io/nugetchar/pen/dyXaLMr)
 
 
 ### Exercices - `font-style` et `font-weight`
@@ -138,7 +138,7 @@ Dans le CodePen suivant, spécifiez les hauteurs de lignes suivantes :
 
 
 ## Propriétés CSS de texte
-Les propriétés CSS pour manipuler du texte dans son ensemble et qui vont nous intéresser aujourd'hui sont listées sur cette page : (propriétés CSS Text)[https://developer.mozilla.org/fr/docs/Web/CSS/CSS_Text].
+Les propriétés CSS pour manipuler du texte dans son ensemble et qui vont nous intéresser aujourd'hui sont listées sur cette page : [propriétés CSS Text](https://developer.mozilla.org/fr/docs/Web/CSS/CSS_Text).
 
 ### Souligner du texte
 Outre la balise `<u></u>` connue pour permettre de souligner du texte, il existe la propriété CSS [`text-decoration`](https://developer.mozilla.org/fr/docs/Web/CSS/text-decoration) qui offre plus de fonctionnalités.
