@@ -21,9 +21,6 @@ Il y en a plusieurs, mais les principales qui vont nous intéresser aujourd'hui 
 - [`font-weight`](https://developer.mozilla.org/fr/docs/Web/CSS/font-weight) : spécifie la graisse du texte ;
 - [`line-height`](https://developer.mozilla.org/fr/docs/Web/CSS/line-height) : spécifie la hauteur de ligne d'un texte.
 
-<br/>
-<br/>
-
 ### Exercices - `font-family`
 La propriété `font-family` s'utilise comme suit :
 
@@ -43,10 +40,6 @@ Dans le CodePen suivant, appliquez la police `"'Xanh Mono', monospace"` à la se
 
 #### Exercice 2
 Dans le CodePen suivant, appliquez désormais la police `"'Xanh Mono', monospace"` uniquement aux éléments de texte ayant la classe `specialText` : [https://codepen.io/nugetchar/pen/wvWNOWO](https://codepen.io/nugetchar/pen/wvWNOWO).
-
-
-<br/>
-<br/>
 
 ### Exercices - `font-size`
 La propriété `font-size` s'utilise comme suit :
@@ -90,9 +83,6 @@ Dans le CodePen suivant, affectez les tailles de texte suivantes :
 (https://codepen.io/nugetchar/pen/dyXaLMr)[https://codepen.io/nugetchar/pen/dyXaLMr]
 
 
-<br/>
-<br/>
-
 ### Exercices - `font-style` et `font-weight`
 
 Les propriétés `font-style` et `font-weight` s'utilisent comme suit :
@@ -127,9 +117,6 @@ Affectez les styles et graisses suivantes :
 [https://codepen.io/nugetchar/pen/GRqzaZm](https://codepen.io/nugetchar/pen/GRqzaZm).
 
 
-<br/>
-<br/>
-
 ### Exercices - `line-height`
 La propriété `line-height` s'utilise comme suit :
 
@@ -149,8 +136,6 @@ Dans le CodePen suivant, spécifiez les hauteurs de lignes suivantes :
 
 [https://codepen.io/nugetchar/pen/MWeLdBM](https://codepen.io/nugetchar/pen/MWeLdBM)
 
-<br/>
-<br/>
 
 ## Propriétés CSS de texte
 Les propriétés CSS pour manipuler du texte dans son ensemble et qui vont nous intéresser aujourd'hui sont listées sur cette page : (propriétés CSS Text)[https://developer.mozilla.org/fr/docs/Web/CSS/CSS_Text].
@@ -174,8 +159,6 @@ La propriété CSS `text-align` indique l'alignement d'un texte. Ses principales
 Sur le CodePen suivant, rendez le deuxième paragraphe aligné à droite, le troisième centré et le quatrième justifié.
 
 [https://codepen.io/nugetchar/pen/QWEYXjX](https://codepen.io/nugetchar/pen/QWEYXjX)
-
-<br/><br/>
 
 ### Indentation du texte
 L'indentation du texte se fait avec la propriété `text-indent`. Elle définit l'espacement du texte par rapport à la gauche.
