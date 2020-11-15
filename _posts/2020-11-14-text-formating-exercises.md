@@ -7,7 +7,7 @@ categories: [html, css]
 
 # Mettre en forme du texte
 
-Nous allons voir ici, au travers d'exercices, comment mettre en forme du texte. Cela nous permettra par ailleurs de travailler avec des conteneurs tels que `div` et `span`, ainsi qu'avec les sélecteurs CSS.
+Nous allons voir ici, au travers d'exercices, comment mettre en forme du texte.
 
 ## Distinction entre propriétés CSS de police et propriétés CSS de texte
 Il va falloir distinguer les propriétés CSS qui agissent sur la police d'un texte (le type de police, sa "graisse", si elle est italique, soulignée) et les propriétés CSS qui agissent sur le texte en lui-même (s'il est centré, justifié, les espaces entre les mots, entre les lignes...).
