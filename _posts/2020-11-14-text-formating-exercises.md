@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "HTML/CSS - Mettre en forme du texte"
-date: 2020-10-24 15:00:00 +0200
+date: 2020-11-24 15:00:00 +0200
 categories: [html, css]
 ---
 
@@ -36,10 +36,10 @@ body {
 }
 ```
 #### Exercice 1
-Dans le CodePen suivant, appliquez la police `"'Xanh Mono', monospace"` à la section d'id `maSection` : [https://codepen.io/nugetchar/pen/eYzxXmJ](https://codepen.io/nugetchar/pen/eYzxXmJ).
+Dans le CodePen suivant, appliquez la police `'Xanh Mono', monospace` à la section d'id `maSection` : [https://codepen.io/nugetchar/pen/eYzxXmJ](https://codepen.io/nugetchar/pen/eYzxXmJ).
 
 #### Exercice 2
-Dans le CodePen suivant, appliquez désormais la police `"'Xanh Mono', monospace"` uniquement aux éléments de texte ayant la classe `specialText` : [https://codepen.io/nugetchar/pen/wvWNOWO](https://codepen.io/nugetchar/pen/wvWNOWO).
+Dans le CodePen suivant, appliquez désormais la police `'Xanh Mono', monospace` uniquement aux éléments de texte ayant la classe `specialText` : [https://codepen.io/nugetchar/pen/wvWNOWO](https://codepen.io/nugetchar/pen/wvWNOWO).
 
 ### Exercices - `font-size`
 La propriété `font-size` s'utilise comme suit :
