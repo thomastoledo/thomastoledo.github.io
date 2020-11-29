@@ -128,11 +128,11 @@ Allez voir dans le fichier `app.component.html` : Angular CLI y a généré **be
 Trouvez la ligne suivante (CTRL+F):
 
 ```html
-<span>{{ title }} app is running!</span>
-```
-La portion de code `{{ title }}` indique à Angular qu'il faudra, à la place de `title`, injecter ce qui se trouve dans l'attribut `title` du composant.
+<span>{% raw %} {{ title }} {% endraw %} app is running!</span>
+``` 
+La portion de code {% raw  %} `{{ title  }}`{% endraw  %} indique à Angular qu'il faudra, à la place de `title`, injecter ce qui se trouve dans l'attribut `title` du composant.
 
-![title]({{ site.url }}/assets/title2.png)
+![title]({{ site.url }}/assets/title.png)
 
 Pour modifier le titre, il suffira donc d'aller dans le composant (fichier `app.component.ts`), et de modifier le contenu du champ `title`.  Essayez avec ceci :
 
