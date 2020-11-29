@@ -27,8 +27,6 @@ cd my-dream-app
 ng serve
 ```
 
-Il est très important pour vous de faire cette étape maintenant, pour la simple et bonne raison qu'il y en a toujours deux ou trois qui ont des soucis avec Node et npm, et que si on doit régler tous les problèmes le jour J et à distance qui plus est, ça va vite nous enquiquiner.
-
 ### Terminal de commande recommandé
 
 - sous Mac : utilisez votre terminal de commande habituel ;
