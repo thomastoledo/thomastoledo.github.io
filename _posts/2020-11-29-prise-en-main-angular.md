@@ -37,7 +37,7 @@ Il est très important pour vous de faire cette étape maintenant, pour la simpl
 
 Selon le terminal de commandes utilisé, la commande `ng new my-dream-app` vous pose les questions suivantes :
 
-![questions angular]({{ site.url }}/_assets/questions_angular.png)
+![questions angular]({{ site.url }}/assets/questions_angular.png)
 
 Si vous avez des soucis pour cette étape, envoyez un message sur Mattermost en me taguant, j'y répondrai.
 
@@ -132,7 +132,7 @@ Trouvez la ligne suivante (CTRL+F):
 ```
 La portion de code `{{ title }}` indique à Angular qu'il faudra, à la place de `title`, injecter ce qui se trouve dans l'attribut `title` du composant.
 
-![title]({{ site.url }}/_assets/title2.png)
+![title]({{ site.url }}/assets/title2.png)
 
 Pour modifier le titre, il suffira donc d'aller dans le composant (fichier `app.component.ts`), et de modifier le contenu du champ `title`.  Essayez avec ceci :
 
@@ -143,7 +143,7 @@ Et, bien sûr, dans le HTML, supprimez le "app is running!".
 Normalement, le résultat devrait être le suivant :
 
 
-![title updated]({{ site.url }}/_assets/title2.png)
+![title updated]({{ site.url }}/assets/title2.png)
 
 ## Pour aller plus loin
 Vous pouvez commencer à voir [les autres commandes d'Angular CLI](https://angular.io/cli) ou encore vous lancer à corps perdu dans [le tutoriel d'Angular](https://angular.io/tutorial) (très complet) qui vous donnera de l'avance.
