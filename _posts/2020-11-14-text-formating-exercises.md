@@ -2,7 +2,7 @@
 layout: post
 title: "HTML/CSS - Mettre en forme du texte"
 date: 2020-11-24 15:00:00 +0200
-categories: [html, css]
+categories: [cours, 1A, html, css]
 ---
 
 # Mettre en forme du texte

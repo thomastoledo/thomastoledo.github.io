@@ -2,7 +2,7 @@
 layout: post
 title:  "JS Warmup"
 date:   2020-10-16 16:00:00 +0200
-categories: [javascript]
+categories: [cours, 2A, javascript]
 ---
 # JS Warmup
 Voici quelques exercices que je donne à mes étudiant.e.s de deuxième année afin qu'ils ne perdent pas la main sur JS.
