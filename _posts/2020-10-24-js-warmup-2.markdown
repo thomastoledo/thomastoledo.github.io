@@ -342,7 +342,7 @@ class Observable {
     let values = args;
     const subscribers = [];
     this.next = (...vals) => {
-      values = [...vals];
+      values = vals;
       subscribers.forEach((f) => f(...values));
     };
     this.subscribe = (f) => {
@@ -381,7 +381,7 @@ class Observable {
     const subscribers = [];
 
     this.next = (...vals) => {
-      values = [...vals];
+      values = vals;
       subscribers.forEach((f) => f(...values));
     };
 
@@ -396,7 +396,7 @@ class Observable {
       const obs = new Observable();
       // s'il en reste, alors on les exécute les unes à la suite des autres
       if (fns.length > 0) {
-        const res = fns.splice(1).reduce((val, fn) => fn(val), fns[0](...values));
+        const res = fns.slice(1).reduce((val, fn) => fn(val), fns[0](...values));
         obs.next(res);
       }
       // on retourne l'Observable
