@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Exercices JavaScript : Variables, Objets et Fonctions"
-date:   2021-03-24 12:15:11 +0200
+date:   2021-03-26 12:15:11 +0200
 categories: [cours, 1A, javascript]
 ---
 # Exercices JavaScript - Variables, Objets et Fonctions
