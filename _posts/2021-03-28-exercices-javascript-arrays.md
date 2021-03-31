@@ -13,12 +13,12 @@ Les tableaux, en JavaScript, appartiennent au [prototype Array](https://develope
 
 Ce prototype propose tout un ensemble de méthodes pour travailler avec les tableaux. Certaines sont font "muter" le tableau sur lequel elles s'appliquent, tandis que d'autres vont retourner un nouveau tableau.
 
-Par exemple, la méthode `push` permet d'insérer un nouveau objet à la fin d'un tableau. On dit que la méthode fait "muter" le tableau, puisque son état va changer après l'appel de `push`.
+Par exemple, la méthode `push` permet d'insérer un nouvel objet à la fin d'un tableau. On dit que la méthode fait "muter" le tableau, puisque son état va changer après l'appel de `push`.
 À l'inverse, la méthode `filter` ne modifiera pas le tableau, mais en retournera un nouveau.
 
 ## Exercice I - Création d'un tableau
 
-- Déclarez un tableau contenu 10 nombres, de 0 à 9 ;
+- Déclarez un tableau contenant 10 nombres, de 0 à 9 ;
 - Déclarez un deuxième tableau contenant 100 nombres, de 0 à 99.
 
 ## Exercice II - Générer un tableau
