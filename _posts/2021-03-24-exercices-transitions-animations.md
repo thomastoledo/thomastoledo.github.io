@@ -15,6 +15,8 @@ Sur le [CodePen suivant](https://codepen.io/nugetchar/pen/GRNVxPp), faites en so
 - la taille de la police d'écriture soit de `2em` ;
 - ces deux changements s'appliquent avec une `transition` de `300ms` avec la [timing function](https://developer.mozilla.org/fr/docs/Web/CSS/transition-timing-function) suivante : `cubic-bezier(.26,-0.23,.26,1.75)`.
 
+**Correction [ici](https://codepen.io/nugetchar/pen/GRrEPQz)**
+
 ## Exercice II
 Sur le [CodePen suivant](https://codepen.io/nugetchar/pen/eYgZeQX), faites en sorte qu'au clic sur sur le bouton central, l'animation suivante se lance :
 
@@ -22,6 +24,8 @@ Sur le [CodePen suivant](https://codepen.io/nugetchar/pen/eYgZeQX), faites en so
 - cette rotation + retour s'effectuent avec une [`animation`](https://developer.mozilla.org/fr/docs/Web/CSS/animation) de `1s` avec la [timing function](https://developer.mozilla.org/fr/docs/Web/CSS/transition-timing-function) suivante : `cubic-bezier(.26,-0.23,.26,1.75)`.
     - à `50%` de l'animation, le bouton est tourné de 180 degrés ;
     - à `100%` de l'animation, le bouton est revenu à 0 degrés.
+
+**Correction [ici](https://codepen.io/nugetchar/pen/gOgRZjy)**
 
 ## Exercice III
 Pour cet exercice, allez sur le [CodePen suivant](https://codepen.io/nugetchar/pen/eYgZwyL).
@@ -38,3 +42,5 @@ Le but est, au clic sur le bouton central :
     - chaque transition doit durer **2s** ;
     - chaque transition doit se lancer après un [délai](https://developer.mozilla.org/fr/docs/Web/CSS/animation-delay) de **1.5s** ;
     - chaque transition doit suivre la *timing-function* `ease` ;
+
+**Correction [ici](https://codepen.io/nugetchar/pen/jOywXeW)**
