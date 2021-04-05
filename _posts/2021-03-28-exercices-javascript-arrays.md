@@ -21,24 +21,168 @@ Par exemple, la méthode `push` permet d'insérer un nouvel objet à la fin d'un
 - Déclarez un tableau contenant 10 nombres, de 0 à 9 ;
 - Déclarez un deuxième tableau contenant 100 nombres, de 0 à 99.
 
+
+<details>
+    <summary>Réponse</summary>
+        
+```javascript
+// On peut déclarer un tableau de deux manières :
+const t = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+const t2 = Array.from(1, 2, 3, 4, 5, 6, 7, 8, 9);
+
+// Pour déclarer un tableau contenant 100 nombres, on ne va pas tout écrire :
+const t3 = [];
+for (let i = 0; i < 100; i++) {
+    t3.push(i);
+} 
+```
+
+</details>
+
 ## Exercice II - Générer un tableau
-- Implémentez une fonction qui génère un tableau de `n` nombres, de `0` à `n` ;
+- Implémentez une fonction qui génère un tableau de `n` nombres, de `0` à `(n - 1)` ;
 - Implémentez une deuxième fonction, qui cette fois génère un tableau de `n` nombres entiers aléatoires ;
 - Implémentez désormais une troisième fonction qui, cette fois, génère un tableau de `n` nombres aléatoires entre `0` et `n` ;
 - Implémentez, enfin, une fonction qui génère un tableau de `n` nombres aléatoires entre deux valeurs `min` et `max`.
+
+
+<details>
+    <summary>Réponse</summary>
+
+```javascript
+// Implémentez une fonction qui génère un tableau de n nombres, de 0 à (n - 1) :
+function generateArrayWithNNumbers(n) {
+    const t = [];
+    for (let i = 0; i < n; i++) {
+        t.push(i);
+    }
+    return t;
+}
+
+
+// Implémentez une deuxième fonction, qui cette fois génère un tableau de n nombres entiers aléatoires
+function generateArrayWithNRandomNumbers(n) {
+    const t = [];
+    for (let i = 0; i < n; i++) {
+        const randomNumber = Math.floor(Math.random() * 100);
+        t.push(randomNumber);
+    }
+    return t;
+}
+
+
+// Implémentez désormais une troisième fonction qui, cette fois, génère un tableau de n nombres aléatoires entre 0 et n
+function generateArrayWithNRandomNumbersBetween0AndN(n) {
+     const t = [];
+    for (let i = 0; i < n; i++) {
+        const randomNumber = Math.floor(Math.random() * (n + 1));
+        t.push(randomNumber);
+    }
+    return t;   
+}
+
+// Implémentez, enfin, une fonction qui génère un tableau de n nombres aléatoires entre deux valeurs min et max.
+function generateArrayWithNRandomNumbersBetweenMinAndMax(n, min, max) {
+     const t = [];
+    for (let i = 0; i < n; i++) {
+        const randomNumber = Math.floor(Math.random() * (max + 1 - min) + min);
+        t.push(randomNumber);
+    }
+    return t;   
+}
+```
+
+</details>
 
 ## Exercice III - `sort`
 - Implémentez une fonction qui génère un tableau de `n` nombres aléatoires, entre deux valeurs `min` et `max`, et qui soit trié de manière ascendante ;
     - faites une solution sans la méthode `sort` ;
     - faites une solution avec la méthode `sort`.
 
+<details>
+    <summary>Réponse</summary>
+        
+```javascript
+// avec .sort()
+function sortNumbersArrayAsc(array) {
+    return array.sort((a, b) => a - b);
+}
+
+// sans .sort()
+function sortNumbersArrayAsc2(array) {
+    const sortedArray = [];
+    const copiedArray = [...array];
+
+    const length = array.length;
+    for (; sortedArray.length < length;) {
+        const idx = findIdxOfMin(copiedArray);
+        sortedArray.push(copiedArray[idx]);
+        copiedArray.splice(idx, 1);
+    }
+    return sortedArray;
+}
+function findIdxOfMin(array) {
+    let idx = 0;
+    for (let i = 0; i < array.length; i++) {
+        if (array[i] < array[idx]) {
+            idx = i;
+        }
+    }
+    return idx;
+}
+```
+
+</details>
+
 ## Exercice IV - `map`
 - Implémentez une fonction qui prend en paramètre un tableau de nombres et qui retourne un nouveau tableau tel que, pour tout élément `x` du tableau, on ait `x²` ;
 - Implémentez une fonction qui prend en paramètre un tableau de prénoms et qui retourne un nouveau tableau tel que, pour tout prénom `p` du tableau, la première lettre soit en majuscule et le reste en minuscules ;
 - Implémentez une fonction qui prend en paramètre un tableau d'objets `{firstname: 'un prénom', lastname: 'un nom'}` et qui retourne un nouveau tableau comprenant une liste de noms complets. Par exemple : `[{firstname: 'John', lastname: 'Doe'}, {firstname: 'Jack', lastname: 'Doe'}]` deviendra `['John Doe', 'Jack Doe']`.
 
+<details>
+    <summary>Réponse</summary>
+        
+```javascript
+function squareNumbers(numbers) {
+    return numbers.map(x => x*x);
+}
+
+function capitalizeFirstNames(firstNames) {
+    return firstNames.map(f => f.charAt(0).toUpperCase() + f.substring(1).toLowerCase())
+}
+
+function fullnames(names) {
+    return names.map(name => name.firstname + ' ' + name.lastname);
+}
+```
+
+</details>
+
 ## Exercice V - `filter`
 - Implémentez une fonction qui filtre les valeurs `null` et `undefined` de n'importe quel tableau et qui retourne un nouveau tableau filtré.
 
+<details>
+    <summary>Réponse</summary>
+        
+```javascript
+function filterNullAndUndefined(array) {
+    return array.filter(value => value !== null && value !== undefined);
+}
+```
+
+</details>
+
 ## Exercice VI - `reduce`
 - Implémentez une fonction qui prend en paramètre un tableau de nombres et qui retourne la somme de tous ces nombres, sans utiliser de boucle `for`.
+
+<details>
+    <summary>Réponse</summary>
+        
+```javascript
+function sum(numbers) {
+    return sum.reduce((accumulator, currValue) => accumulator + currValue, 0);
+}
+```
+
+</details>
+
