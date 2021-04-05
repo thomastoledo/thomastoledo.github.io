@@ -22,9 +22,8 @@ Par exemple, la méthode `push` permet d'insérer un nouvel objet à la fin d'un
 - Déclarez un deuxième tableau contenant 100 nombres, de 0 à 99.
 
 
-<details>
-    <summary>Réponse</summary>
-        
+**Correction**
+
 ```javascript
 // On peut déclarer un tableau de deux manières :
 const t = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -37,8 +36,6 @@ for (let i = 0; i < 100; i++) {
 } 
 ```
 
-</details>
-
 ## Exercice II - Générer un tableau
 - Implémentez une fonction qui génère un tableau de `n` nombres, de `0` à `(n - 1)` ;
 - Implémentez une deuxième fonction, qui cette fois génère un tableau de `n` nombres entiers aléatoires ;
@@ -46,8 +43,7 @@ for (let i = 0; i < 100; i++) {
 - Implémentez, enfin, une fonction qui génère un tableau de `n` nombres aléatoires entre deux valeurs `min` et `max`.
 
 
-<details>
-    <summary>Réponse</summary>
+**Correction**
 
 ```javascript
 // Implémentez une fonction qui génère un tableau de n nombres, de 0 à (n - 1) :
@@ -92,15 +88,12 @@ function generateArrayWithNRandomNumbersBetweenMinAndMax(n, min, max) {
 }
 ```
 
-</details>
-
 ## Exercice III - `sort`
 - Implémentez une fonction qui génère un tableau de `n` nombres aléatoires, entre deux valeurs `min` et `max`, et qui soit trié de manière ascendante ;
     - faites une solution sans la méthode `sort` ;
     - faites une solution avec la méthode `sort`.
 
-<details>
-    <summary>Réponse</summary>
+**Correction**
         
 ```javascript
 // avec .sort()
@@ -121,6 +114,7 @@ function sortNumbersArrayAsc2(array) {
     }
     return sortedArray;
 }
+
 function findIdxOfMin(array) {
     let idx = 0;
     for (let i = 0; i < array.length; i++) {
@@ -132,15 +126,12 @@ function findIdxOfMin(array) {
 }
 ```
 
-</details>
-
 ## Exercice IV - `map`
 - Implémentez une fonction qui prend en paramètre un tableau de nombres et qui retourne un nouveau tableau tel que, pour tout élément `x` du tableau, on ait `x²` ;
 - Implémentez une fonction qui prend en paramètre un tableau de prénoms et qui retourne un nouveau tableau tel que, pour tout prénom `p` du tableau, la première lettre soit en majuscule et le reste en minuscules ;
 - Implémentez une fonction qui prend en paramètre un tableau d'objets `{firstname: 'un prénom', lastname: 'un nom'}` et qui retourne un nouveau tableau comprenant une liste de noms complets. Par exemple : `[{firstname: 'John', lastname: 'Doe'}, {firstname: 'Jack', lastname: 'Doe'}]` deviendra `['John Doe', 'Jack Doe']`.
 
-<details>
-    <summary>Réponse</summary>
+**Correction**
         
 ```javascript
 function squareNumbers(numbers) {
@@ -156,13 +147,10 @@ function fullnames(names) {
 }
 ```
 
-</details>
-
 ## Exercice V - `filter`
 - Implémentez une fonction qui filtre les valeurs `null` et `undefined` de n'importe quel tableau et qui retourne un nouveau tableau filtré.
 
-<details>
-    <summary>Réponse</summary>
+**Correction**
         
 ```javascript
 function filterNullAndUndefined(array) {
@@ -170,19 +158,15 @@ function filterNullAndUndefined(array) {
 }
 ```
 
-</details>
 
 ## Exercice VI - `reduce`
 - Implémentez une fonction qui prend en paramètre un tableau de nombres et qui retourne la somme de tous ces nombres, sans utiliser de boucle `for`.
 
-<details>
-    <summary>Réponse</summary>
+**Correction**
         
 ```javascript
 function sum(numbers) {
     return sum.reduce((accumulator, currValue) => accumulator + currValue, 0);
 }
 ```
-
-</details>
 
