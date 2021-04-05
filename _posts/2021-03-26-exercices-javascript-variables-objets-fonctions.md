@@ -113,6 +113,14 @@ Le code fonctionne-t-il ? Si oui, qu'affiche-t-il ? Si non, pourquoi ?
 
 Puis affichez l'objet dans la console de votre navigateur avec la fonction `console.log`.
 
+**Correction :**
+```js
+const user = {
+  login: 'toto',
+  password: 'toto'
+}
+```
+
 ### Les variables `let` et `var`
 Les mots-clefs `let` et `var` permettent tous les deux de déclarer des variables. Cependant, quelques subtilités existent entre les deux.
 
@@ -180,6 +188,30 @@ Ecrivez quatre fonctions :
 - une fonction `substract` qui prend deux paramètres en entrée et qui retourne la soustraction des deux ;
 - une fonction `multiply` qui prend deux paramètres en entrée et qui retourne la multiplication des deux ;
 - une fonction `divide` qui prend deux paramètres en entrée et qui retourne la division du premier par le second. Attention au cas de la division par 0 !
+
+**Correction :**
+
+```js
+function add(x, y) {
+  return x + y;
+}
+
+function substract(x, y) {
+  return x - y;
+}
+
+function multiply(x, y) {
+  return x * y;
+}
+
+function divide(x, y) {
+  if (y === 0) {
+    return x;
+  } else {
+    return x / y;
+  }
+}
+```
 
 ### Les fonctions anonymes et les callbacks
 Une fonction anonyme, comme son nom l'indique, n'a pas de nom. Pourtant, le code suivant ne fonctionne pas :
@@ -255,6 +287,15 @@ console.log(doubleAndSquare(2));
 
 ```
 
+**Correction :**
+```js
+function compose(f, g) {
+  return function(x) {
+    return f(g(x));
+  }
+}
+```
+
 - Ecrivez une fonction `delay` qui prend en paramètre une fonction `f` et un nombre `n`, et qui n'exécutera `f` qu'après `n` millisecondes. Aidez-vous de `setTimeout`.
 
 ```js
@@ -264,6 +305,13 @@ function delay(f, n) {
 
 // n'affichera 'Hello!' qu'une seconde plus tard
 delay(function() {console.log('Hello!')}, 1000);
+```
+
+**Correction :**
+```js
+function delay(f, time) {
+  setTimeout(() => f(), time);
+}
 ```
 
 ### Les *arrow functions* ou "fonctions fléchées"
