@@ -122,7 +122,7 @@ if (!isMajor) {
  
 // Ecrivez une boucle for dans laquelle on affiche chaque élément du tableau
 ```
- ### Exercice 2
+### Exercice 2
 
 ```js
  const temperatures = 
@@ -132,13 +132,13 @@ if (!isMajor) {
  
 // À l'aide d'une boucle for, retrouvez la plus petite température dans le tableau.
 ```
- ### Exercice 3
+### Exercice 3
 ```js
  const temperatures = 
  [0, 12, -13, 1, 4, -27, 129.5, 33, 36, 38, -39];
 // À l'aide d'une boucle for, faites en sorte de n'afficher que les valeurs strictement supérieures à 0
 ```
- ### Exercice 4
+### Exercice 4
 ```js
 const temperatures = 
 [0, 12, -13, 1, 4, -27, 129.5, 33, 36, 38, -39];
