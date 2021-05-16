@@ -661,7 +661,7 @@ Reprenez la classe `Contact` et spécifiez-lui les méthodes suivantes :
 ### Exercice 4
 Reprenez la classe `Contact` et spécifiez lui la méthode suivante :
 
-- `update`, qui prend en paramètre un object et qui met à jour le contact en fonction des propriétés de l'objet ;
+- `update`, qui prend en paramètre un objet et qui met à jour le contact en fonction des propriétés de l'objet ;
 
 ### Exercice 5
 Enfin, testez que tout fonctionne avec le code suivant :
