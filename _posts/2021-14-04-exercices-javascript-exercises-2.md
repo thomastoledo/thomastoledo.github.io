@@ -191,10 +191,10 @@ const users = [
 
 const users = [
 	{login: 'jteraire', firstname: 'julie', lastname: 'teraire', password: 'nevergonna'},
-	{login: 'micament', firstname: 'mohammed', lastname: 'icament' password: 'giveyouup'},
-	{login: 'rtehel', firstname: 'romain', lastname: 'tehel' password: 'nevergonna'},
-	{login: 'hgon', firstname: 'hawa', lastname: 'gon' password: 'letyoudown'},
-	{login: 'saongle', firstname: 'selim', lastname: 'aongle' password: 'rickrolled'},
+	{login: 'micament', firstname: 'mohammed', lastname: 'icament', password: 'giveyouup'},
+	{login: 'rtehel', firstname: 'romain', lastname: 'tehel', password: 'nevergonna'},
+	{login: 'hgon', firstname: 'hawa', lastname: 'gon', password: 'letyoudown'},
+	{login: 'saongle', firstname: 'selim', lastname: 'aongle', password: 'rickrolled'},
 ];
 ```
 
