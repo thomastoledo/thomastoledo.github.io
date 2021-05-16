@@ -654,9 +654,9 @@ Reprenez la classe `Contact` et spécifiez-lui un constructeur qui prendra un no
 Reprenez la classe `Contact` et spécifiez-lui les méthodes suivantes :
 
 - `updateFirstname`, qui prend en paramètre un prénom et qui met à jour le prénom du contact ;
-- `updateLasttname`, qui prend en paramètre un prénom et qui met à jour le nom du contact ;
-- `updateEmail`, qui prend en paramètre un prénom et qui met à jour l'email du contact ;
-- `updatePhone`, qui prend en paramètre un prénom et qui met à jour le numéro de téléphone du contact ;
+- `updateLasttname`, qui prend en paramètre un nom et qui met à jour le nom du contact ;
+- `updateEmail`, qui prend en paramètre un email et qui met à jour l'email du contact ;
+- `updatePhone`, qui prend en paramètre un numéro de téléphone et qui met à jour le numéro de téléphone du contact ;
 
 ### Exercice 4
 Reprenez la classe `Contact` et spécifiez lui la méthode suivante :
