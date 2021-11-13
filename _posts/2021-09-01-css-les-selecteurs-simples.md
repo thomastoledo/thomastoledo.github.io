@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Cours Développement Frontend - Les sélecteurs simples"
-date: 2021-05-11 12:21:11 +0200
+date: 2021-09-01 12:21:11 +0200
 categories: [cours, 1A, frontend]
 ---
 
@@ -157,6 +157,6 @@ Pour sélectionner un élément portant un certain ID, par exemple `menu` dans n
 }
 ```
 
-## Le sélecteur global
-Il existe un sélecteur global : `*`.
-Ce sélecteur permet de sélectionner **absolument tous les éléments** de la page. Il est très peu utilisé tel quel, mais peut s'avérer utile pour, par exemple, sélectionner tous les éléments d'un conteneur.
+## Le sélecteur universel
+Il existe un sélecteur universel : `*`.
+Ce sélecteur permet de sélectionner **absolument tous les éléments**. Il est très peu utilisé tel quel, mais peut s'avérer utile pour, par exemple, sélectionner tous les éléments d'un conteneur.

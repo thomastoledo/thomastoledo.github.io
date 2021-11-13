@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Cours Développement Frontend - Liens utiles"
-date: 2021-05-11 12:16:11 +0200
+date: 2021-09-01 12:16:11 +0200
 categories: [cours, 1A, frontend]
 ---
 # Cours Développement Frontend - Liens utiles
