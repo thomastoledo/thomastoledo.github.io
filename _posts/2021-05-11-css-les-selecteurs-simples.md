@@ -32,7 +32,7 @@ Mais avant cela, nous allons mettre en place notre environnement de travail !
 
 ## Mise en place de l'environnement de travail
 
-- créez, dans un nouveau dossier sur votre ordinateur, un fichier `index.html`, et donnez-lui le contenu suivant :
+Créez, dans un nouveau dossier sur votre ordinateur, un fichier `index.html`, et donnez-lui le contenu suivant :
 
 ```html
 <!DOCTYPE  html>
@@ -74,7 +74,7 @@ Mais avant cela, nous allons mettre en place notre environnement de travail !
 </html>
 ```
 
-- créez, à côté, un fichier nommé `style.css`. C'est dans ce fichier que nous allons écrire notre code CSS.
+Créez, à côté, un fichier nommé `style.css`. C'est dans ce fichier que nous allons écrire notre code CSS.
 
 ## Inclure le fichier CSS
 Tel qu'il est, notre code n'inclut pas le fichier CSS. Peu importe ce que nous écrirons dedans , donc, cela n'aura aucun effet sur notre page web. 
