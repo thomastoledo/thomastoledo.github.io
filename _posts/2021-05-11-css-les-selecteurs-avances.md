@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Cours Développement Frontend - Les sélecteurs avancés"
-date: 2021-05-11 12:22:11 +0200
+date: 2021-05-11 12:23:11 +0200
 categories: [cours, 1A, frontend]
 ---
 
