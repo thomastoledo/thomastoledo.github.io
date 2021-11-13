@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Cours Développement Frontend - Introduction"
-date: 2021-05-11 12:15:11 +0200
+date: 2021-05-11 12:19:11 +0200
 categories: [cours, 1A, frontend]
 ---
 # Cours Développement Frontend - La sémantique
