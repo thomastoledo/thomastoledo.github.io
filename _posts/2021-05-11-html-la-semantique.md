@@ -7,7 +7,7 @@ categories: [cours, 1A, frontend]
 # Cours Développement Frontend - La sémantique
 
 ## Qu'est-ce que la sémantique ?
-La sémantique est une partie importante du HTML : elle garanti que votre code aura du sens pour la machine.
+La sémantique est une partie importante du HTML : elle garantit que votre code aura du sens pour la machine.
 
 Mais qu'est-ce que cela signifie, "avoir du sens pour la machine" ?
 

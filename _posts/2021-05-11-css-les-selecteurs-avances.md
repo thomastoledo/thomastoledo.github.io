@@ -5,8 +5,8 @@ date: 2021-05-11 12:23:11 +0200
 categories: [cours, 1A, frontend]
 ---
 
- # Cours Développement Frontend - Les sélecteurs avancés
- Nous avons vu les sélecteurs simples ainsi que leurs spécificités. Nous allons maintenant voir les sélecteurs avancés.
+# Cours Développement Frontend - Les sélecteurs avancés
+Nous avons vu les sélecteurs simples ainsi que leurs spécificités. Nous allons maintenant voir les sélecteurs avancés.
 
 Un sélecteur avancé n'est autre qu'une combinaison de sélecteurs simples. Il y a plusieurs types de combinaisons.
 

@@ -5,8 +5,8 @@ date: 2021-05-11 12:20:11 +0200
 categories: [cours, 1A, frontend]
 ---
 
- # Cours Développement Frontend - Les attributs
- En HTML, toutes les balises peuvent **porter des attributs**. Un attribut est un mot-clef auquel on affecte une valeur.
+# Cours Développement Frontend - Les attributs
+En HTML, toutes les balises peuvent **porter des attributs**. Un attribut est un mot-clef auquel on affecte une valeur.
 
 Voici un exemple :
 

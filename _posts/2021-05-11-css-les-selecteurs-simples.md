@@ -33,6 +33,7 @@ Mais avant cela, nous allons mettre en place notre environnement de travail !
 ## Mise en place de l'environnement de travail
 
 - créez, dans un nouveau dossier sur votre ordinateur, un fichier `index.html`, et donnez-lui le contenu suivant :
+
 ```html
 <!DOCTYPE  html>
 <html>
