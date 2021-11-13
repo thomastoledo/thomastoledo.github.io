@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Cours Développement Frontend - Liens Utiles"
+title: "Cours Développement Frontend - Les outils du navigateur"
 date: 2021-05-11 12:17:11 +0200
 categories: [cours, 1A, frontend]
 ---

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Cours Développement Frontend - Introduction"
+title: "Cours Développement Frontend - Les bases"
 date: 2021-05-11 12:18:11 +0200
 categories: [cours, 1A, frontend]
 ---

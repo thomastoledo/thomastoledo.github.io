@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Cours Développement Frontend - Introduction"
+title: "Cours Développement Frontend - Les sélecteurs simples"
 date: 2021-05-11 12:21:11 +0200
 categories: [cours, 1A, frontend]
 ---
