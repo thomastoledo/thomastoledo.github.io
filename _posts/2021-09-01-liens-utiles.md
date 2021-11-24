@@ -49,7 +49,7 @@ Délivre des cours de développement : [https://www.freecodecamp.org/](https://w
 
 ## Des générateurs de CSS
 
-Ce thread Twitter contient une liste de générateurs CSS. Je vous conseille cependant d'attendre un peu avant de les utiliser : https://twitter.com/denicmarko/status/1446055330694246401
+Ce thread Twitter contient une liste de générateurs CSS. Je vous conseille cependant d'attendre un peu avant de les utiliser : [https://twitter.com/denicmarko/status/1446055330694246401](https://twitter.com/denicmarko/status/1446055330694246401)
 
 De nombreuses autres personnes sur Twitter font régulièrement des threads sur des sites utilitaires pour le développement front-end. Celui-ci en est un autre exemple : [https://twitter.com/ravikmmr/status/1419634872004403205](https://twitter.com/ravikmmr/status/1419634872004403205).
 
