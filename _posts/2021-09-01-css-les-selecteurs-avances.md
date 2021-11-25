@@ -106,7 +106,7 @@ Si pour sélectionner les éléments `li` au sein de la `div` d'ID `favorites` j
 Mon sélecteur n'atteindra aucun élément : en effet, **aucun des éléments descendants directs** de la `div` d'ID `favorites` n'est un élément `li`. Pour les atteindre en utilisant le sélecteurs d'éléments enfants, il faudrait écrire :
 
 ```css
-#favorite > ul > li {}
+#favorites > ul > li {}
 ```
 
 **Question 1 :** à votre avis, quelle est la spécificité, dans notre cas, d'un tel sélecteur ?

@@ -47,7 +47,7 @@ Ceci est une div quelconque
 ```html
 <main>
 	<h1 class="big-title">Titre principal</h1>
-	<h2 class="secondary-title red title">Titre secondaire 1</h2>
+	<h2 class="secondary-title red-title">Titre secondaire 1</h2>
 	<p>...</p>
 	<h2 class="secondary-title red-title">Titre secondaire 2</h2>
 	<p>...</p>
