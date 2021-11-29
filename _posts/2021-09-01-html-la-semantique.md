@@ -304,7 +304,7 @@ Un lien se définit avec la balise `<a></a>` et a besoin de l'attribut `href` po
 Exemple :
 
 ```html
-<a href="eemi.com">EEMI</a>
+<a href="http://eemi.com">EEMI</a>
 ```
 
 **Exercice** : écrivez, en HTML, un lien qui redirige vers Google. Cherchez également comment faire pour que ce lien s'ouvre dans un nouvel onglet.
