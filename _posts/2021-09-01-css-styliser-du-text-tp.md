@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Cours Développement Frontend - Styliser du texte - TP"
-date: 2021-12-04 12:23:11 +0200
+date: 2021-12-04 12:24:11 +0200
 categories: [cours, 1A, frontend]
 ---
 # CSS - Styliser du texte - TP
