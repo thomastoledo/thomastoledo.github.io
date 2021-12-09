@@ -50,4 +50,4 @@ Bienvenue dans ce premier cours de développement web. Tout au long de nos cours
 
 Régulièrement, vous aurez des DM à rendre, et serez interrogé.e.s sur ce que vous aurez vu en cours.
 
-Je suis disponible pour répondre à vos questions par email à l'adresse suivante : <a  href="mailto:thomas.toledo@eemi.com">thomas.toledo@eemi.com</a>. Je suis également disponible sur le Mattermost de l'EEMI : [tchat.eemi.tech](tchat.eemi.tech/).
+Je suis disponible pour répondre à vos questions par email à l'adresse suivante : <a  href="mailto:thomas.toledo@eemi.com">thomas.toledo@eemi.com</a>. Je suis également disponible sur le Mattermost de l'EEMI : [tchat.eemi.tech](http://tchat.eemi.tech/).
