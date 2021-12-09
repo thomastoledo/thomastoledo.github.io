@@ -185,7 +185,7 @@ Vous voyez que la taille du `h3` (`2rem`) n'est pas la même que celle du `h2` (
 Au travers de cet exercice, vous pouvez déjà vous faire une idée sur l'unité que vous allez vouloir utiliser lorsque vous mettrez en forme vos textes. Personnellement, je n'utilise jamais l'unité de mesure `em`, que je trouve très "casse-figure", et très occasionnellement l'unité de mesure `rem`. Je préfère m'en tenir aux `px`, mais cela reste subjectif. 
 
 ### Mettre du texte en gras et en italique
-Pour mettre du texte en gras et en italique, on serait tenté d'utiliser les balises `<b></b>` ([https://developer.mozilla.org/fr/docs/Web/HTML/Element/b](https://developer.mozilla.org/fr/docs/Web/HTML/Element/b)) et `<i></i>` ([https://developer.mozilla.org/fr/docs/Web/HTML/Element/b](https://developer.mozilla.org/fr/docs/Web/HTML/Element/b)).
+Pour mettre du texte en gras et en italique, on serait tenté d'utiliser les balises `<b></b>` ([https://developer.mozilla.org/fr/docs/Web/HTML/Element/b](https://developer.mozilla.org/fr/docs/Web/HTML/Element/b)) et `<i></i>` ([https://developer.mozilla.org/fr/docs/Web/HTML/Element/i](https://developer.mozilla.org/fr/docs/Web/HTML/Element/i)).
 
 Ces deux balises étaient historiquement utilisées à ces fins : aujourd'hui, on préfèrera utiliser les propriétés CSS `font-weight` ([https://developer.mozilla.org/fr/docs/Web/CSS/font-weight](https://developer.mozilla.org/fr/docs/Web/CSS/font-weight)) et `font-style`([https://developer.mozilla.org/fr/docs/Web/CSS/font-style](https://developer.mozilla.org/fr/docs/Web/CSS/font-style)).
 
