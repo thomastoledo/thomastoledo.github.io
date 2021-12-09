@@ -90,7 +90,7 @@ Dans l'exemple suivant [https://codepen.io/nugetchar/pen/zYEYwpV?](https://codep
 **Exercice :** à votre tour, suivez les instructions ci-après pour vous faire la main et apprendre à importer des polices d'écriture avec Google Font.
 
 - allez sur le CodePen [https://codepen.io/nugetchar/pen/RwLwVOg](https://codepen.io/nugetchar/pen/RwLwVOg) ;
-- ouvrez également un onglet sur [fonts.google.com/](fonts.google.com/);
+- ouvrez également un onglet sur [fonts.google.com/](http://fonts.google.com/);
 - sur Google Fonts, cherchez une police d'écriture qui vous convient, et cliquez dessus ;
 - vous arrivez alors sur la page de détail de la police d'écriture : choisissez les styles qui vous conviennent !
 - en bas à droite se trouve deux options : `<link>` et `@import`. La première est pour inclure les ressources via le HTML, la seconde pour les inclure directement dans le CSS ;
