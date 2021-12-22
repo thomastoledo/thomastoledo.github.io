@@ -19,8 +19,8 @@ Bienvenue dans ce premier cours de développement web. Tout au long de nos cours
 8. CSS - Les sélecteurs avancés
 9. CSS - pseudo classes et pseudo éléments
 10. CSS - Styliser du texte
-11. HTML - Le modèle de boîtes
-12. CSS - Marges internes et externes
+11. CSS - Le modèle de boîtes
+12. CSS - Les positions
 13. HTML - Les médias
 14. HTML - Les tableaux
 15. HTML - Les listes
