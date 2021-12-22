@@ -4,7 +4,7 @@ title: "Cours Développement Frontend - Le modèle de boîtes"
 date: 2021-12-22 12:24:11 +0200
 categories: [cours, 1A, frontend]
 ---
-# HTML - Le modèle de boîtes
+# CSS - Le modèle de boîtes
 
 En HTML, nous utilisons ce que l'on appelle le **modèle de boîtes**. Ce modèle va nous permettre de comprendre les différentes marges et les comportements des types de boîtes.
 
