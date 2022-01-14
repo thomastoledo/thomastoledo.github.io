@@ -120,7 +120,7 @@ Elle possède plusieurs syntaxes :
 
 <style>
 	div {
-		/* margin-top: 10px; margin-right: 5px; margin-left: 7px; margin-bottom: 20px; */
+		/* margin-top: 10px; margin-right: 5px; margin-bottom: 7px; margin-left: 20px; */
 		margin: 10px 5px 7px 20px;
 
 		/* margin-top: 10px; margin-right et left: 5px; margin-bottom: 7px; */
