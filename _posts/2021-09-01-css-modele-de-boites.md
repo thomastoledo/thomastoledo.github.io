@@ -82,7 +82,7 @@ Elle possède plusieurs syntaxes :
 
 <style>
 	div {
-		/* padding-top: 10px; padding-right: 5px; padding-left: 7px; padding-bottom: 20px; */
+		/* padding-top: 10px; padding-right: 5px; padding-bottom: 7px; padding-left: 20px; */
 		padding: 10px 5px 7px 20px;
 
 		/* padding-top: 10px; padding-right et left: 5px; padding-bottom: 7px; */
