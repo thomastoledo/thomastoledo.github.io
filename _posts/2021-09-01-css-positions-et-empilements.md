@@ -90,7 +90,7 @@ Voyons de quoi il en retourne au travers d'un exemple : [https://codepen.io/nuge
 Ici, j'ai positionné l'élément bleu en tant que *sticky* avec la règle CSS suivante : `position: sticky`. Je lui ai également appliqué des décalages : `top: 0` et `left: 0`. Pourtant, lorsque vous faites défiler la page, que cela soit verticalement ou horizontalement, l'élément suit le défilement dans un premier temps pour ensuite se comporter comme un élément *fixed* une fois les bords de la page atteints.
 
 Qu'est-ce que cela signifie ?
-Cela signifique qu'un élément positionné de manière *sticky* va, pas défaut, se comporter comme un élément positionné de manière relative. **Néanmoins**, si des décalages lui sont spécifiés (`top`, `right`, `bottom`, `left`), alors dès que l'élément **atteindra ces décalages** par rapport à son **référentiel**, il se comportera comme un élément **fixed**.
+Cela signifique qu'un élément positionné de manière *sticky* va, par défaut, se comporter comme un élément positionné de manière relative. **Néanmoins**, si des décalages lui sont spécifiés (`top`, `right`, `bottom`, `left`), alors dès que l'élément **atteindra ces décalages** par rapport à son **référentiel**, il se comportera comme un élément **fixed**.
 
 **Transposée à notre exemple**, cette définition signifie que l'élément bleu se comporte comme un élément positionné de manière relative, et dès qu'il atteint `0px` sur la gauche ou le haut de son référentiel, alors il passe en fixe.
 
