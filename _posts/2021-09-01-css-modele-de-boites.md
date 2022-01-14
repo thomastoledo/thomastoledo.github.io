@@ -16,9 +16,10 @@ Un élément `span` est un élément de type *inline*.
 
 ### Les éléments de type *inline*
 Les éléments de type *inline* :
-	- se suivent sur une ligne ;
-	- se dimensionnent par rapport à leur contenu (donc pas de `width` ou de `height`) ;
-	- les marges internes et externes (que nous verrons juste après) ne provoqueront pas le déplacement des éléments autour.
+
+- se suivent sur une ligne ;
+- se dimensionnent par rapport à leur contenu (donc pas de `width` ou de `height`) ;
+- les marges internes et externes (que nous verrons juste après) ne provoqueront pas le déplacement des éléments autour.
 
 ### Les éléments de type *block*
 Les éléments de type *block* ;
