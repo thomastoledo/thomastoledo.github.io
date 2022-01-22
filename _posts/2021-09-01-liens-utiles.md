@@ -8,7 +8,7 @@ categories: [cours, 1A, frontend]
 Voici plusieurs liens utiles, qui vous serviront pour toute l'année.
 
 ## MDN
-Le site [https://developer.mozilla.org/fr/](https://developer.mozilla.org/fr/) vous offre la documentation la plus complète et la plus riche concernant le développement frontend. Tous les pages ne sont pas en français (mais une bonne partie de ce qui nous intéresse, si).
+Le site [https://developer.mozilla.org/fr/](https://developer.mozilla.org/fr/) vous offre la documentation la plus complète et la plus riche concernant le développement frontend. Toutes les pages ne sont pas en français (mais une bonne partie de ce qui nous intéresse, si).
 
 Gardez ce lien dans vos favoris, il vous sera d'une grande aide.
 
