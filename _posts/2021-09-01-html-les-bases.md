@@ -11,7 +11,7 @@ Il signifie Hyper Text Markup Language, et est dérivé d'un autre langage : le 
 
 "Markup" signifie "tag" ou encore "balise" : il s'agit donc d'un langage écrit sous forme de balises.
 
-Durant les années qui ont suivit, on vit apparaître le xHTML, qui fut rapidement abandonné. Aujourd'hui, lorsque l'on parle de HTML, on parle de HTML5.
+Durant les années qui ont suivi, on vit apparaître le xHTML, qui fut rapidement abandonné. Aujourd'hui, lorsque l'on parle de HTML, on parle de HTML5.
 
 ## Le DOCTYPE
 - il s'agit d'une instruction et non d'une balise ;
