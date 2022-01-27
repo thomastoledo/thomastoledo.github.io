@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Cours Développement Frontend - Flexbox"
-date: 2021-12-23 12:24:11 +0200
+date: 2022-01-22 12:25:11 +0200
 categories: [cours, 1A, frontend]
 ---
 # CSS - Flexbox
