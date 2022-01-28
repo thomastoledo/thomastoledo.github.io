@@ -227,7 +227,8 @@ Reprenez ce CodePen : [https://codepen.io/nugetchar/pen/NWaQQVm](https://codepen
 4. sur le conteneur, spécifiez la règle CSS `align-items: center` ;
 5. changez maintenant `align-items: center` pour `align-content: center` et regardez la différence entre les deux.
 
- #### L'espace **entre** les éléments flex
+#### L'espace **entre** les éléments flex
+
  On peut bien évidemment jouer avec les marges comme nous l'avons vu, et il est également possible, avec Flexbox, de spécifier les écarts entre les éléments flex.
  Cet écart se fera uniquement entre eux, et pas sur les côtés.
 
