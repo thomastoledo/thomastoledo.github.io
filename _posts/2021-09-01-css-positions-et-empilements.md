@@ -76,7 +76,7 @@ En fait, on peut formaliser le référentiel d'un élément positionné de mani�
 **Un élément positionné en `absolute` aura comme référentiel le premier de ses éléments parents étant lui-même positionné autrement qu'en `static` (qui est le positionnement par défaut).**
 
 ## Le positionnement fixe
-Le positionnement fixe a les mêmes propriétés que le positionnement absolu, à ceci près qu'un élément positionné de manière fixe est **indépendant du *scroll***.
+Le positionnement fixe a les mêmes propriétés que le positionnement absolu, à ceci près qu'un élément positionné de manière fixe est **indépendant du *scroll***. De plus, le **référentiel** de positionnement d'un élément "fixe" est directement la zone d'affichage.
 
 Voici un exemple : [https://codepen.io/nugetchar/pen/XWJVxrm](https://codepen.io/nugetchar/pen/XWJVxrm).
 
