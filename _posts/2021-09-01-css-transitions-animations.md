@@ -227,6 +227,7 @@ Ici, l'événement écouté est **click**, et la fonction à exécuter est la su
 On indique donc au navigateur qu'au **clic** sur **bidule**, on exécutera une fonction.
 
 <u>La fonction à exécuter</u>
+
 Nous allons pouvoir terminer cette analyse de JavaScript avec les trois lignes de notre fonction.
 
 ```js
