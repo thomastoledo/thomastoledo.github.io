@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Cours Développement Frontend - Les variables en CSS"
+title: "Cours Développement Frontend - Les bases de JavaScript"
 date: 2022-03-02 12:26:11 +0200
 categories: [cours, 1A, frontend]
 ---
