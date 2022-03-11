@@ -181,6 +181,10 @@ const dice = throwDice();
 
 Puis, à l'aide d'une instruction de condition, faites en sorte que ce code ne s'exécute que si le résultat est égal à `3` ou `6`.
 
+```js
+console.log('win');
+```
+
 
 ## Les opérateurs
 Dans les exemples précédents, nous avons vu, sans en parler, ce que l'on appelle **des opérateurs**.
