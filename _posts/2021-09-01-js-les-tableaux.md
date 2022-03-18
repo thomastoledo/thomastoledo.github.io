@@ -273,7 +273,7 @@ const users = [
 
 Partez du même tableau que précédemment, et faites en sorte que le filtrage fonctionne pour n'importe quelle chaîne de caractères.
 
-Pour cela, écrivez une fonction `searchUser`, qui prendra en paramètre un argument `value` et un argument `users` (qui sera un tableau d'utilisateurs), et retournera `true` si la chaîne de caractères `value` est contenue dans le nom, prénom ou *username* de l'utilisateur, et `faslse` sinon.
+Pour cela, écrivez une fonction `searchUser`, qui prendra en paramètre un argument `value` et un argument `users` (qui sera un tableau d'utilisateurs), et retournera un nouveau tableau filtré.
 
 
 ### Réduire un tableau à un seul élément - `reduce`
