@@ -48,10 +48,10 @@ Pour illustrer le problème que cela peut causer, prenons le code suivant :
 <!DOCTYPE html>
 <html>
 <head>
-<script src="./app.js"></script>
+  <script src="./app.js"></script>
 </head>
 <body>
-<button id="btn">click me</button>
+  <button id="btn">click me</button>
 </body>
 </html>
 ```
