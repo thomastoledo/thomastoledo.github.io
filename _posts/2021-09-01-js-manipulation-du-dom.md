@@ -87,8 +87,8 @@ Dans votre fichier `index.html`, rajoutez le code suivant :
 
 ```html
 <main>
-<button id="addBtn">Add a square</button>
-<div class="square-list"></div>
+  <button id="addBtn">Add a square</button>
+  <div class="square-list"></div>
 </main>
 ```
 *index.html*
