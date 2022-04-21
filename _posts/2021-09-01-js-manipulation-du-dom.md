@@ -304,7 +304,11 @@ Une correction est disponible ici : [https://codepen.io/nugetchar/pen/VwyexXe](h
 ## Le TP
 
 Il est désormais temps de passer au TP à proprement parler.
-Faites une copie de votre dossier (par exemple pour vos futures révisions), et allez sur le CodePen suivant : [https://codepen.io/nugetchar/pen/XWVXYPK](https://codepen.io/nugetchar/pen/XWVXYPK).
+Faites une copie de votre dossier (par exemple pour vos futures révisions), et allez sur le CodePen suivant : 
+
+- classe 1 : [https://codepen.io/nugetchar/pen/XWVXYPK](https://codepen.io/nugetchar/pen/XWVXYPK) ;
+- classe 2 : [https://codepen.io/nugetchar/pen/ZEvPPpm](https://codepen.io/nugetchar/pen/ZEvPPpm) ;
+- classe FT : [https://codepen.io/nugetchar/pen/MWrxxJz](https://codepen.io/nugetchar/pen/MWrxxJz).
 
 Sur ce CodePen se trouve une app très basique : une liste de contacts affiche leurs noms, prénoms et numéro de téléphone, ainsi qu'une petite croix. Il y a également un bouton en bas à droite.
 
