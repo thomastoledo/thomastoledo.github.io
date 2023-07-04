@@ -174,7 +174,7 @@ Ensuite, les bords de chaque `card` sont arrondis : pour gérer cela, nous utili
 
 C'est bien beau, mais le texte n'est pas centré, et il manque des **marges internes et externes**.
 
-Centrez le texte avec ce que nous avons vu dans le cour pour [**styliser du texte**](https://nugetchar.github.io/cours/1a/frontend/2021/12/04/css-styliser-du-texte.html).
+Centrez le texte avec ce que nous avons vu dans le cour pour [**styliser du texte**](https://thomastoledo.github.io/cours/1a/frontend/2021/12/04/css-styliser-du-texte.html).
 
 Et appliquez les marges suivantes :
 - `16px` pour les marges externes ;

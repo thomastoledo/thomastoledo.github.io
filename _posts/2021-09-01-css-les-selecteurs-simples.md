@@ -65,7 +65,7 @@ Créez, dans un nouveau dossier sur votre ordinateur, un fichier `index.html`, e
 						<li important>email : thomas.toledo[at]eemi.com</li>
 						<li important>téléphone : 06.99.99.99.99</li>
 						<li>github & dev.to : @nugetchar</li>
-						<li>blog technique : nugetchar.github.io/</li>
+						<li>blog technique : thomastoledo.github.io/</li>
 					</ul>
 				</section>
 			</div>

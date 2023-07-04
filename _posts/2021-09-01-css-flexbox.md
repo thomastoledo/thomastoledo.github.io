@@ -285,7 +285,7 @@ Dans l'exemple que j'ai donné, les tâches de priorité `severe` ont l'`order` 
 
 Parfois, vous allez vouloir que certains éléments en particulier prennent plus de place que d'autres.
 
-Peut-être vous rappelez-vous cet exercice : [https://codepen.io/nugetchar/pen/MWvzoPK](https://codepen.io/nugetchar/pen/MWvzoPK), que nous avions vu lors du cours sur les pseudo-classes et pseudo-éléments ([https://nugetchar.github.io/cours/1a/frontend/2021/09/01/css-pseudo-classes-et-pseudo-elements.html](https://nugetchar.github.io/cours/1a/frontend/2021/09/01/css-pseudo-classes-et-pseudo-elements.html)).
+Peut-être vous rappelez-vous cet exercice : [https://codepen.io/nugetchar/pen/MWvzoPK](https://codepen.io/nugetchar/pen/MWvzoPK), que nous avions vu lors du cours sur les pseudo-classes et pseudo-éléments ([https://thomastoledo.github.io/cours/1a/frontend/2021/09/01/css-pseudo-classes-et-pseudo-elements.html](https://thomastoledo.github.io/cours/1a/frontend/2021/09/01/css-pseudo-classes-et-pseudo-elements.html)).
 
 Dans cet exercice, l'idée était qu'au passage de la souris sur un élément rouge, celui-ci devait prendre plus de place. Ce mécanisme est implémenté avec Flexbox.
 
