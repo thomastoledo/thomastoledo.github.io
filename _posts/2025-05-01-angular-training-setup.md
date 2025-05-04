@@ -89,4 +89,4 @@ And that's is for now.
 If you start the app with the command `ng serve`, you will see you app is accessible at `localhost:4200`. The page will be blank, unless you left the placeholder in `app.component.html`. And that's it. So now, we can actually start coding.
 
 ## Next lesson
-The next lesson will be about components, modules (and why we do not use them anymore), services, and all the basics of Angular.
+The next lesson will be about components and modules.
