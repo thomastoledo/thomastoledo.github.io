@@ -6,7 +6,7 @@ categories: [formation, angular, typescript, javascript, training]
 ---
 
 # Angular Training - Modules and standalone components
-
+In the [previous article](https://thomastoledo.github.io/formation/angular/typescript/javascript/training/2025/04/30/angular-training-setup.html), we saw how to setup an Angular project.
 In this article, we will see the differences between Modules and Standalone Components. Let's dive in it!
 
 ## The repository
@@ -14,7 +14,7 @@ We will still use the same repository: [Angular Training](https://github.com/tho
 
 In your folder, **do not forget to execute the `npm install` command**.
 
-Reminder: this app, called "routines", is all about setting up your routines. It will mainly be timers and stuff.
+Reminder: this app, called "routines", is all about setting up your routines.
 
 ## Our first feature
 Counter-intuitively enough, it is considered a bad practice to develop the login page first. A macro-roadmap should go like this: implement public pages -> add security -> implement private pages. Also, it is considered a bad practice to tackle security **after** having implemented private pages.
@@ -303,4 +303,4 @@ The latter are now considered common and best practice. Maybe in a few years, we
 
 
 ## Next lesson
-In the next lesson, we will keep on building our feature.
+In the [next lesson](https://thomastoledo.github.io/angular/training/2025/05/05/angular-list-routines.html), we will keep on building our feature.

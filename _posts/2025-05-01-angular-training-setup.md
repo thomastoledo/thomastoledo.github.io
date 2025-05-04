@@ -74,7 +74,7 @@ This file contains the **description of the projet**: the type of the project, w
 In `public`, there is a favicon. Leave it as it is for now.
 In `src`, there are our sources. Where we will code.
 
-`styles.scsss` is for global styles. They will apply overall the app, no matter the component.
+`styles.scss` is for global styles. They will apply overall the app, no matter the component.
 `main.ts` is the entry point of our app.
 `index.html` is the file where the app will be "injected".
 
@@ -89,4 +89,4 @@ And that's is for now.
 If you start the app with the command `ng serve`, you will see you app is accessible at `localhost:4200`. The page will be blank, unless you left the placeholder in `app.component.html`. And that's it. So now, we can actually start coding.
 
 ## Next lesson
-The next lesson will be about components and modules.
+The [next lesson](https://thomastoledo.github.io/formation/angular/typescript/javascript/training/2025/04/30/angular-training-modules-standalone-components.html) will be about components and modules.
