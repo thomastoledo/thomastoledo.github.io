@@ -162,7 +162,201 @@ export class HomepageComponent {
 **Warning**: it can only be used in an injection context, i.e: constructor of class declaration.
 
 ### The HTML template
-It is now time for us to use 
+It is now time for us to implement the HTML template. What we want to do is to list the routines we just created. Historically, we would use the `*ngFor` structural directive. This directive needed to be used **directly on an HTML tag**, and would repeat this tag for each element of the array we would loop over.
+
+So, let us say we wanted to display a simple unordered list. We would write some HTML like this:
+
+```html
+<ul>
+  <li>List item 1</li>
+  <li>List item 2</li>
+  <li>List item 3</li>
+</ul>
+```
+
+In an Angular component, for a given array (let's say `readonly array = ['toto', 'tata', 'titi']`), we would write:
+
+```html
+<ul>
+  <li *ngFor="let name of array">
+    {{name}}
+  </li>
+</ul>
+```
+
+OK so what is going on here?
+First of all, we have `*ngFor="let name of array"`: you can think of it as the equivalent of a `for` loop in JavaScript. This is how we specify we are going to iterate over the array.
+Then, we have `{{name}}`: here, we use the local variable `name` we specified in the previous line to display it via interpolation, using `{{}}`.
+
+So, given that, we can easily use our `routines` array to display it in an `*ngFor` loop.
+
+```html
+<ul>
+  <li *ngFor="let routine of routines">
+    {{routine}}
+  </li>
+</ul>
+```
+
+But, hold one... There are a few things that are wrong, here...
+
+First of all, `*ngFor` is part of the Angular `CommonModule`, meaning we need to import it to be able to use it. If your remember our previous lesson, you know you need to import it like that:
+
+```ts
+@Component({
+  selector: 'app-homepage',
+  imports: [CommonModule], // <= import it there
+  templateUrl: './homepage.component.html',
+  styleUrl: './homepage.component.scss'
+})
+export class HomepageComponent {
+  private readonly homepageService = inject(HomepageService);
+  readonly routines = toSignal(this.homepageService.getRoutines());
+}
+```
+
+Then `routines` is not an array... but a Signal encapsulating an array. And to read a Signal, wether it is in HTML or in TypeScript, we must call it like a function: `routines()`. This way, the Signal is evaluated and its value is pulled and read.
+
+So our code becomes:
+
+```html
+<ul>
+  <li *ngFor="let routine of routines()">
+    {{routine}}
+  </li>
+</ul>
+```
+
+FInally, we try to interpolate `routine`, but `routine` is an object. Doing `{{routine}}` will only display `[object Object]`.
+
+If we check our `Routine` model, we can see we have:
+
+```ts
+export interface RoutineDto {
+  id: string;
+  name: string;
+  description: string;
+  startingDate: Date;
+  endingDate: Date;
+  reccurence: 'minute' | 'hour' | 'day' | 'week' | 'month' | 'year';
+  reccurenceCoef: number;
+}
+```
+So far, we can display the name by doing: `{{routine.name}}`.
+
+```html
+<ul>
+    <li *ngFor="let routine of routines()">
+        {{routine.name}}
+    </li>
+</ul>
+```
+
+But there is one problem... if you try to launch the app, at best you will see a blank page. Where is our list?
+
+### The routing
+Routing is an essential part of Angular. It is the cornerstone of your app. It might be a bit scary at first, but is actually pretty simple and super powerfull.
+The problem we have right now is that we cannot access our list. What we want, in this training, is to access it via the root URL. To configure it, open the `app.routes.ts` file. In this file, there is just one empty array called `routes`. It is of type `Routes`, which is the equivalent to `Route[]`. A `Route` has many fields to specify, but today we will need only two.
+
+In the array, create an object like so:
+
+```ts
+import { Routes } from '@angular/router';
+
+export const routes: Routes = [
+    {
+        path: '',
+        loadComponent: () => import('../homepage/homepage.component').then(m => m.HomepageComponent)
+    }
+];
+```
+
+- `path` specifies the path from which we will load a component;
+- `loadComponent` is an arrow function that specifies a `lazy-loaded component`. This term, `lazy-loaded`, means the component will be loaded ONLY when accessing the URL specified previously. It is a best practice to use it to improve performance and to avoid loading too much components at a time.
+
+Now, try and launch the app: you should still have a problem, if you look into your browser console.
+
+```text
+ERROR NullInjectorError: R3InjectorError(Standalone[_HomepageComponent])[_HomepageService -> _HomepageService -> _RoutineService -> _HttpClient -> _HttpClient]: 
+  NullInjectorError: No provider for _HttpClient!
+```
+
+We are, indeed, missing two more things: this error is a common error when starting with Angular. It means your dependencies cannot be injected, as the right classes were not provided properly.
+
+- `HttpClient`: the `HttpClient` must be provided at the root of your app, by adding in you `app.config.ts` the `provideHttpClient()` provider function.
+
+```ts
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideZoneChangeDetection({ eventCoalescing: true }),
+    provideRouter(routes),
+    provideHttpClient(), //<= add it there
+  ]
+};
+```
+
+- `RoutineService` is needed in the `HomepageComponent`, but is not provided either. Add it to your list of providers in `homepage.component.ts`:
+
+```ts
+import { Component, inject } from '@angular/core';
+import { HomepageService } from './homepage.service';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { CommonModule } from '@angular/common';
+import { RoutineService } from '@domain/routine/routine.service';
+
+@Component({
+  selector: 'app-homepage',
+  imports: [CommonModule],
+  providers: [RoutineService], // <= add it there
+  templateUrl: './homepage.component.html',
+  styleUrl: './homepage.component.scss'
+})
+export class HomepageComponent {
+  private readonly homepageService = inject(HomepageService);
+  readonly routines = toSignal(this.homepageService.getRoutines());
+}
+```
+Now, if you try to access your app, your should see a list of routines names.
+
+## Refactor
+We are going to do a small refactor: we are going to use `@for` instead of `*ngFor`. In your `homepage.component.html` file, do the following:
+
+```html
+<ul>
+    @for (routine of routines(); track routine.id) {
+        <li>
+            {{routine.name}}
+        </li>
+    }
+</ul>
+```
+
+As you can see, `@for` is **not specified on an HTML tag**. Instead, it is a more readable notation. The `track routine.id` part is **very** important. I did not use it previously, but it also exists on `*ngFor` and should never be neglected. The `track` keyword in `@for` tells Angular how to uniquely identify each item in a list, so it can update the DOM more efficiently when the data changes.
+
+This notation is the modern one, as I am writing this article.
+
+## Conclusion of this article
+We finally developed a first and succinct version of our feature. It might not be pretty, it might not to much, but just doing this allowed us to learn a gread deal of Angular.
+
+Voici une proposition pour ta section finale **"## What you have learned"**, claire, pédagogique et fidèle à la progression de ton article :
+
+## What you have learned
+
+In this article, you have learned:
+
+* How to structure an Angular application with `domain` and `feature` folders;
+* What a feature service (or facade) is and how it helps separating concerns;
+* The difference between Observables and Signals, and when to use each;
+* How to convert an Observable into a Signal using `toSignal`;
+* How to display a list with `*ngFor` and its modern replacement `@for`;
+* Why using `trackBy` (or `track`) improves performance when rendering lists;
+* How Angular change detection works and why `OnPush` strategy is a best practice;
+* How to configure routing using `loadComponent` for standalone components;
+* How to fix common dependency injection errors (like `No provider for HttpClient`);
+* How to provide `HttpClient` globally in a standalone app using `provideHttpClient()`.
+
+You've now seen in practice how Angular standalone APIs and modern syntax can simplify and improve frontend development.
+
 
 ## Next lesson
-In the next lesson, we will keep on building our feature.
+In the next lesson, we will put some SCSS on our list, and we will add a form to add a routine. We will also sort the routines so the users can see the ones they have to do today. By doing so, we are going to know a bit more about Observables, Signals, forms and state management. 
