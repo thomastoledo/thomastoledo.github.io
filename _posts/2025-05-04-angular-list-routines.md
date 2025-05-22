@@ -152,7 +152,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 })
 export class HomepageComponent {
   private readonly homepageService = inject(HomepageService);
-  readonly routines = toSignal(this.homepageService.getRoutines()); // <= we added "toSignal"
+  readonly routines = toSignal(this.homepageService.getRoutines(), { initialValue: [] }); // <= we added "toSignal"
 }
 
 ```
