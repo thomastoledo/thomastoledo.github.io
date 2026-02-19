@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Hexagonal Architecture with Angular"
-date:   2026-17-02 00:00:00 +0100
+date:   2026-02-17 00:00:00 +0100
 categories: [formation, angular, typescript, javascript, training]
 ---
 
