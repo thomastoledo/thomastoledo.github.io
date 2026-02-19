@@ -263,8 +263,10 @@ A minimal structure for our "Create Ticket" feature can look like this:
 src/
   app/
     domain/
-    application/
       ports/
+      entities/
+      value-objects/
+    application/
       use-cases/
     infrastructure/
       adapters/
@@ -312,6 +314,7 @@ So let's do it!
 Create a directory in your Angular app. Under `src/app`, create a `domain` directory and, in `domain`, create the following sub-directories:
 - `entities`
 - `value-objects`
+- `ports`
 
 #### `entities`
 There goes the `Ticket.ts` file:
@@ -369,37 +372,8 @@ export class Email {
 
 ```
 
-We have our Domain. For now, it's sufficient.
-
-## Application => Use Cases and Ports
-
-The **application layer** orchestrates behavior.
-
-It contains:
-
-* Use cases (`CreateTicketUseCase`)
-* Port interfaces (`TicketRepositoryPort`)
-* Command/Result models
-
-Responsibilities:
-
-* Coordinate domain objects
-* Enforce workflow
-* Express what the system needs from the outside world
-
-It does not:
-
-* Implement HTTP
-* Access databases
-* Manipulate Angular state
-
-The application layer defines contracts. It depends only on the domain.
-
-So let's get to it!
-
 ### Writing ports
-Let's start by going under the `src/app` folder and, inside of it, create the `application/ports` directory.
-Inside of it, create the following file:
+Let's start by going under the `src/app/domain/ports` folder and, inside of it, create the following file:
 - `TicketRepositoryPort` => to create a ticket
 
 #### `TicketRepositoryPort`
@@ -432,16 +406,32 @@ In those cases, the reactive nature is part of the business requirement. The str
 Use Promise for one-shot operations.
 Use Observable when the behavior is inherently continuous or event-driven.
 
+We have our Domain. For now, it's sufficient.
 
+## Application => Use Cases
 
-Here is the section you can insert under:
+The **application layer** orchestrates behavior.
 
-```
-### Writing use cases
-#### `CreateTicketUseCase`
-```
+It contains:
 
----
+* Use cases (`CreateTicketUseCase`)
+* Command/Result models
+
+Responsibilities:
+
+* Coordinate domain objects
+* Enforce workflow
+* Express what the system needs from the outside world
+
+It does not:
+
+* Implement HTTP
+* Access databases
+* Manipulate Angular state
+
+The application layer defines contracts. It depends only on the domain.
+
+So let's get to it!
 
 ### Writing use cases
 
@@ -449,8 +439,7 @@ Here is the section you can insert under:
 
 We now have:
 
-* A **Domain** (`Ticket`, `Email`)
-* A **Port** (`TicketRepositoryPort`)
+* A **Domain** with entities and value objects (`Ticket`, `Email`) and a **Port** (`TicketRepositoryPort`)
 * Soon enough, we will have an **Adapter** that implements the port
 
 What is missing is the orchestration layer: the **use case**.
