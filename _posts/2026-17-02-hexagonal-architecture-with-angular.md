@@ -8,6 +8,8 @@ categories: [formation, angular, typescript, javascript, training]
 # Hexagonal Architecture in Angular - A Practical, Minimal Use Case
 In today's article, we are gonna learn a bit more about hexagonal architecture with Angular. This article is for people who are curious about hexagonal architecture and already know about Angular.
 
+Throught this article, we'll build a small use case. The repository with the final code can be found [here](https://github.com/thomastoledo/hexagonal-architecture-angular-template)
+
 ## The structural Drift of Growing Angular Applications
 Angular applications rarely collapse overnight. They drift.
 
