@@ -716,7 +716,7 @@ function toCreateDto(values: RoutineFormGroupValues): CreateRoutineDto {
     !values.startingDate ||
     !values.endingDate ||
     !values.reccurence ||
-    values.reccurenceCoef == null
+    values.reccurenceCoef === null
   ) {
     throw new Error('Cannot convert to DTO: missing required values.');
   }
