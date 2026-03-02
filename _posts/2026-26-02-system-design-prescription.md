@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "System Design - Prescription App"
-date:   2026-02-17 00:00:00 +0100
+date:   2026-02-26 00:00:00 +0100
 categories: [training, system design]
 ---
 # System Design Exercise #1
