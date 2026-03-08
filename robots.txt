@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: /logs/
 Disallow: /signal/
-Disallow: /archive/
+Disallow: /archives/
