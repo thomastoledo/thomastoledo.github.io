@@ -1,0 +1,123 @@
+.primary-star {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    left: 0;
+    top: 0;
+    background: #fff;
+    opacity: 1;
+    z-index: 3;
+    border-radius: 50%;
+    transition:
+        left var(--jupiter-transition-ms) cubic-bezier(0.2, 0.84, 0.18, 1),
+        top var(--jupiter-transition-ms) cubic-bezier(0.2, 0.84, 0.18, 1),
+        width var(--jupiter-transition-ms) cubic-bezier(0.2, 0.84, 0.18, 1),
+        height var(--jupiter-transition-ms) cubic-bezier(0.2, 0.84, 0.18, 1),
+        border-radius var(--jupiter-transition-ms) ease,
+        background var(--jupiter-transition-ms) ease,
+        box-shadow var(--jupiter-transition-ms) ease,
+        opacity 600ms ease;
+}
+
+.primary-star.jupiter {
+    width: var(--jupiter-size);
+    height: var(--jupiter-size);
+    left: var(--jupiter-left);
+    top: var(--jupiter-top);
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background:
+        radial-gradient(circle at 30% 22%, rgba(255, 241, 208, 0.46) 0 14%, rgba(255, 241, 208, 0.04) 36%, rgba(0, 0, 0, 0) 58%),
+        repeating-linear-gradient(7deg, #c89b66 0 8px, #bc915e 8px 16px, #d7af78 16px 24px, #956d46 24px 32px, #a57a4e 32px 40px),
+        radial-gradient(circle at 62% 42%, rgba(0, 0, 0, 0.18) 0 62%, rgba(0, 0, 0, 0.38) 84%, rgba(0, 0, 0, 0.55) 100%);
+    box-shadow:
+        0 0 24px rgba(236, 177, 120, 0.22),
+        0 0 64px rgba(220, 166, 108, 0.14),
+        inset -10px -12px 24px rgba(30, 18, 8, 0.32),
+        inset 10px 10px 22px rgba(255, 218, 166, 0.08);
+}
+
+.primary-star.shrunk {
+    width: 14px;
+    height: 14px;
+    left: var(--jupiter-left);
+    top: var(--jupiter-top);
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: radial-gradient(circle at 36% 34%, #f5d9b5 0 22%, #8f6241 70%, #2f1d14 100%);
+    box-shadow: 0 0 14px rgba(205, 132, 75, 0.38);
+}
+
+.primary-star.gone {
+    opacity: 0;
+}
+
+.citadel-button {
+    position: absolute;
+    z-index: 5;
+    transform: translate(-50%, 0);
+    padding: 6px 10px;
+    border: 1px solid rgba(232, 232, 232, 0.25);
+    background: rgba(8, 8, 8, 0.45);
+    color: rgba(235, 235, 235, 0.72);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    text-transform: lowercase;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition:
+        opacity 900ms ease,
+        color 900ms ease,
+        border-color 900ms ease,
+        background 900ms ease;
+}
+
+.citadel-button.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.betelgeuse {
+    position: absolute;
+    z-index: 4;
+    left: 50%;
+    top: 50%;
+    width: 4px;
+    height: 4px;
+    background: #f2b8a7;
+    opacity: 0;
+    pointer-events: none;
+    transition:
+        opacity 1300ms ease,
+        filter 1300ms ease;
+    animation: betelgeuseBlink 4.6s ease-in-out infinite;
+}
+
+.betelgeuse.active {
+    opacity: 0.22;
+    pointer-events: auto;
+}
+
+.betelgeuse.discoverable {
+    opacity: 0.78;
+    filter: brightness(1.35);
+}
+
+.betelgeuse.gone {
+    opacity: 0;
+    pointer-events: none;
+}
+
+@keyframes betelgeuseBlink {
+    0%,
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        filter: brightness(1.1);
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.08);
+        filter: brightness(1.4);
+    }
+}

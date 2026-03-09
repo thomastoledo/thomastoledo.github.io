@@ -1,0 +1,168 @@
+.cosmos-layer,
+.satellite-layer {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+    contain: layout style paint;
+    transition: opacity 1400ms ease;
+}
+
+.cosmos-layer {
+    z-index: 1;
+}
+
+.satellite-layer {
+    z-index: 2;
+}
+
+.cosmos-layer.active,
+.satellite-layer.active {
+    opacity: 1;
+}
+
+.cosmos-star {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--star-color, rgba(255, 255, 255, 0.95));
+    opacity: var(--star-dim-opacity, 0.35);
+    transform: translateZ(0);
+    will-change: opacity;
+    animation-duration: var(--star-duration, 2600ms);
+    animation-delay: var(--star-delay, 0ms);
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
+.cosmos-star::before {
+    content: "";
+    position: absolute;
+    top: calc(-1 * var(--star-glow-inset, 8px));
+    right: calc(-1 * var(--star-glow-inset, 8px));
+    bottom: calc(-1 * var(--star-glow-inset, 8px));
+    left: calc(-1 * var(--star-glow-inset, 8px));
+    border-radius: 50%;
+    opacity: var(--star-glow-dim-opacity, 0.18);
+    box-shadow:
+        0 0 var(--star-glow-near, 6px) var(--star-glow-color, rgba(255, 255, 255, 0.65)),
+        0 0 var(--star-glow-far, 14px) var(--star-glow-color, rgba(255, 255, 255, 0.28));
+    will-change: opacity;
+    animation-duration: var(--star-duration, 2600ms);
+    animation-delay: var(--star-delay, 0ms);
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
+.cosmos-star.rhythm-a {
+    animation-name: starCorePulse;
+}
+
+.cosmos-star.rhythm-a::before {
+    animation-name: starGlowPulse;
+}
+
+.cosmos-star.rhythm-b {
+    animation-name: starCorePulseWide;
+}
+
+.cosmos-star.rhythm-b::before {
+    animation-name: starGlowPulseWide;
+}
+
+.cosmos-star.rhythm-c {
+    animation-name: starCorePulseDrift;
+}
+
+.cosmos-star.rhythm-c::before {
+    animation-name: starGlowPulseDrift;
+}
+
+.satellite {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: #fff;
+    border-radius: 0;
+    box-shadow:
+        0 0 var(--satellite-glow-near, 8px) rgba(255, 255, 255, 0.96),
+        0 0 var(--satellite-glow-far, 18px) rgba(255, 255, 255, 0.72);
+    opacity: 0;
+    transform-origin: center;
+    will-change: transform, opacity;
+}
+
+.satellite.visible {
+    opacity: 1;
+}
+
+@keyframes starCorePulse {
+    0%,
+    100% {
+        opacity: var(--star-dim-opacity, 0.35);
+    }
+    50% {
+        opacity: var(--star-peak-opacity, 0.82);
+    }
+}
+
+@keyframes starGlowPulse {
+    0%,
+    100% {
+        opacity: var(--star-glow-dim-opacity, 0.18);
+    }
+    50% {
+        opacity: var(--star-glow-peak-opacity, 0.5);
+    }
+}
+
+@keyframes starCorePulseWide {
+    0%,
+    100% {
+        opacity: var(--star-dim-opacity, 0.28);
+    }
+    35% {
+        opacity: var(--star-peak-opacity, 0.76);
+    }
+    75% {
+        opacity: var(--star-mid-opacity, 0.36);
+    }
+}
+
+@keyframes starGlowPulseWide {
+    0%,
+    100% {
+        opacity: var(--star-glow-dim-opacity, 0.14);
+    }
+    35% {
+        opacity: var(--star-glow-peak-opacity, 0.44);
+    }
+    70% {
+        opacity: var(--star-glow-mid-opacity, 0.26);
+    }
+}
+
+@keyframes starCorePulseDrift {
+    0%,
+    100% {
+        opacity: var(--star-dim-opacity, 0.24);
+    }
+    45% {
+        opacity: var(--star-peak-opacity, 0.72);
+    }
+    75% {
+        opacity: var(--star-mid-opacity, 0.36);
+    }
+}
+
+@keyframes starGlowPulseDrift {
+    0%,
+    100% {
+        opacity: var(--star-glow-dim-opacity, 0.12);
+    }
+    45% {
+        opacity: var(--star-glow-peak-opacity, 0.4);
+    }
+    75% {
+        opacity: var(--star-glow-mid-opacity, 0.22);
+    }
+}
