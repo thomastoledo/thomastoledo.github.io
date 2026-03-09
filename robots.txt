@@ -4,3 +4,4 @@ Disallow: /signal/
 Disallow: /archives/
 Disallow: /suntraz/
 Disallow: /orbital-noise/
+Disallow: /orbita1-noise/
