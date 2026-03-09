@@ -3,15 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Orbita1 Noise</title>
+    <title>Cosmos Generator</title>
     <link rel="stylesheet" href="./styles.css" />
+    <script
+      src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
+      async
+      defer
+    ></script>
   </head>
   <body>
     <main class="app-shell">
       <header class="app-header">
-        <p class="eyebrow">Echo Replica</p>
         <h1>Cosmos Generator</h1>
-        <p>An empty shell of the current project. It keeps the shape and drops the machinery.</p>
+        <p>Choose a style and generate a wallpaper in one click.</p>
       </header>
 
       <section class="controls" aria-label="Generator controls">
@@ -27,15 +31,15 @@
 
         <div class="actions">
           <button id="generateBtn" type="button">Generate</button>
-          <button id="downloadBtn" type="button">Download PNG</button>
+          <button id="downloadBtn" type="button" request="The request remembers">Download PNG</button>
+          <div id="turnstileContainer" class="turnstile-container" aria-label="Human check"></div>
         </div>
       </section>
 
       <p id="meta" class="meta" aria-live="polite"></p>
 
-      <section id="preview" class="preview" aria-label="Wallpaper preview">
-        <canvas id="wallpaperCanvas" aria-hidden="true"></canvas>
-        <div id="voidMessage" class="void-message" aria-live="polite"></div>
+      <section class="preview" aria-label="Wallpaper preview">
+        <canvas id="wallpaperCanvas"></canvas>
       </section>
     </main>
 
