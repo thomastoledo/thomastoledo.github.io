@@ -2,3 +2,5 @@ User-agent: *
 Disallow: /logs/
 Disallow: /signal/
 Disallow: /archives/
+Disallow: /suntraz/
+Disallow: /orbital-noise/
