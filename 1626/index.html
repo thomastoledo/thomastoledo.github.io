@@ -17,6 +17,7 @@ layout: default
   .smiley {
     display: inline-block;
     color: inherit;
+    will-change: transform, color, text-shadow;
     transition: color 0.15s ease, text-shadow 0.15s ease, transform 0.15s ease;
   }
   .smiley.is-winking {
@@ -24,9 +25,43 @@ layout: default
     text-shadow: 0 0 10px rgba(255, 90, 54, 0.9);
   }
   .smiley.is-glitching {
-    animation: smiley-glitch 0.24s steps(2, end) 1;
+    animation: smiley-glitch 0.32s steps(2, end) 1;
     color: #7eecd6;
-    text-shadow: -2px 0 #ff3b6b, 2px 0 #42d4ff;
+    text-shadow: -3px 0 #ff3b6b, 3px 0 #42d4ff;
+  }
+  body.is-page-glitching .site-header,
+  body.is-page-glitching .page-content,
+  body.is-page-glitching .site-footer,
+  body.is-page-glitching .container {
+    animation: page-glitch-shift 0.08s steps(2, end) infinite;
+    filter: hue-rotate(145deg) saturate(1.7) contrast(1.15);
+  }
+  .page-glitch-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0;
+    background:
+      repeating-linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.14) 0,
+        rgba(255, 255, 255, 0.14) 2px,
+        transparent 2px,
+        transparent 6px
+      ),
+      linear-gradient(
+        90deg,
+        rgba(255, 40, 110, 0.18),
+        transparent 32%,
+        rgba(70, 212, 255, 0.2) 68%,
+        transparent
+      );
+    mix-blend-mode: screen;
+  }
+  .page-glitch-overlay.is-active {
+    opacity: 1;
+    animation: page-glitch-flicker 0.08s steps(2, end) infinite;
   }
   @keyframes smiley-glitch {
     0% {
@@ -48,6 +83,41 @@ layout: default
       transform: translateX(0);
     }
   }
+  @keyframes page-glitch-shift {
+    0% {
+      transform: translateX(0);
+    }
+    25% {
+      transform: translateX(-4px) skewX(1deg);
+    }
+    50% {
+      transform: translateX(5px) skewX(-2deg);
+    }
+    75% {
+      transform: translateX(-2px);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  @keyframes page-glitch-flicker {
+    0% {
+      opacity: 0.15;
+      transform: translateX(0);
+    }
+    35% {
+      opacity: 0.5;
+      transform: translateX(-6px);
+    }
+    65% {
+      opacity: 0.25;
+      transform: translateX(5px);
+    }
+    100% {
+      opacity: 0.4;
+      transform: translateX(0);
+    }
+  }
 </style>
 
 <div class="container">
@@ -59,9 +129,27 @@ layout: default
   <p><strong>Page not found <span class="smiley" data-arago=true>:(</span></strong></p>
   <p>The requested page could not be found.</p>
 </div>
+<div class="page-glitch-overlay" aria-hidden="true"></div>
 
 <script>
   const smiley = document.querySelector("[data-arago='true']");
+  const pageGlitchOverlay = document.querySelector(".page-glitch-overlay");
+  const hintDelayMs = 5000;
+  const pageEnteredAt = Date.now();
+  const debounce = (callback, delay) => {
+    let timeoutId = null;
+
+    return () => {
+      if (timeoutId) {
+        window.clearTimeout(timeoutId);
+      }
+
+      timeoutId = window.setTimeout(() => {
+        callback();
+      }, delay);
+    };
+  };
+  let exitHintShown = false;
 
   function triggerGlitch() {
     if (!smiley) {
@@ -72,9 +160,29 @@ layout: default
     void smiley.offsetWidth;
     smiley.classList.add("is-glitching");
 
-    window.setTimeout(function () {
+    window.setTimeout(() => {
       smiley.classList.remove("is-glitching");
-    }, 240);
+    }, 320);
+  }
+
+  function triggerPageGlitch() {
+    if (exitHintShown) {
+      return;
+    }
+
+    exitHintShown = true;
+
+    document.body.classList.add("is-page-glitching");
+    if (pageGlitchOverlay) {
+      pageGlitchOverlay.classList.add("is-active");
+    }
+
+    window.setTimeout(() => {
+      document.body.classList.remove("is-page-glitching");
+      if (pageGlitchOverlay) {
+        pageGlitchOverlay.classList.remove("is-active");
+      }
+    }, 500);
   }
 
   function triggerWink() {
@@ -86,33 +194,45 @@ layout: default
     smiley.textContent = ";)";
     smiley.classList.add("is-winking");
 
-    window.setTimeout(function () {
+    window.setTimeout(() => {
       smiley.textContent = ":(";
       smiley.classList.remove("is-winking");
     }, 1000);
   }
 
-  if (smiley) {
-    const interactionHintShown = false;
-
-    function showInteractionHint() {
-      if (interactionHintShown) {
-        return;
-      }
-
-      interactionHintShown = true;
-      triggerGlitch();
-    }
-
-    window.addEventListener("pointermove", showInteractionHint, { once: true, passive: true });
-    window.addEventListener("touchstart", showInteractionHint, { once: true, passive: true });
+  function isBeforeHintWindow() {
+    return Date.now() - pageEnteredAt < hintDelayMs;
   }
 
-  window.setTimeout(function () {
+  function handleLikelyExit(event) {
+    if (!isBeforeHintWindow()) {
+      return;
+    }
+
+    if (event.relatedTarget || event.toElement) {
+      return;
+    }
+
+    if (event.clientY > 0) {
+      return;
+    }
+
+    triggerPageGlitch();
+  }
+
+  const debouncedTriggerGlitch = debounce(triggerGlitch, 120);
+
+  if (smiley) {
+    document.addEventListener("mousemove", debouncedTriggerGlitch, { once: true, passive: true });
+  }
+
+  window.addEventListener("mouseout", handleLikelyExit, { passive: true });
+
+  window.setTimeout(() => {
     if (!smiley) {
       return;
     }
 
     triggerWink();
-  }, 5000);
+  }, hintDelayMs);
 </script>
