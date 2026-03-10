@@ -14,11 +14,40 @@ layout: default
     line-height: 1;
     letter-spacing: -1px;
   }
+  .smiley {
+    color: inherit;
+    transition: color 0.15s ease, text-shadow 0.15s ease;
+  }
+  .smiley.is-winking {
+    color: #ff5a36;
+    text-shadow: 0 0 10px rgba(255, 90, 54, 0.9);
+  }
 </style>
 
 <div class="container">
   <h1>404</h1>
 
-  <p><strong>Page not found :)</strong></p>
+  <!-- They left bronze suns so the line would never be forgotten -->
+  <!-- The line ends where the hill begins.
+  A painter once watched Paris from there. -->
+  <p><strong>Page not found <span class="smiley" data-arago=true>:(</span></strong></p>
   <p>The requested page could not be found.</p>
 </div>
+
+<script>
+  window.setTimeout(function () {
+    let smiley = document.querySelector("[data-arago='true']");
+
+    if (!smiley) {
+      return;
+    }
+
+    smiley.textContent = ";)";
+    smiley.classList.add("is-winking");
+
+    window.setTimeout(function () {
+      smiley.textContent = ":(";
+      smiley.classList.remove("is-winking");
+    }, 1000);
+  }, 5000);
+</script>
