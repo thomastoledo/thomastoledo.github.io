@@ -1,1 +1,0 @@
-import{createWallpaperGenerator as e}from"../../src/wallpaper/createWallpaperGenerator.js";import{getStyleProfile as r}from"../../src/styles/styleProfiles.js";const a=e(r("blue-ink"));export const generateWallpaper=a.generateWallpaper;export const generateWallpaperAsync=a.generateWallpaperAsync;export{DEFAULT_OPTIONS}from"../../src/wallpaper/defaultOptions.js";

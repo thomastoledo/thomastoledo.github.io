@@ -1,1 +1,0 @@
-function n(n,t){return Math.max(t,Math.round(n))}export function scaleRange(t,e,o=1){return[n(t[0]*e,o),n(t[1]*e,o)]}export function scaleConstellationModules(t,e){const o=Math.min(e,1.5);return[n(t[0]*e/o,2),n(t[1]*e/o,2)]}

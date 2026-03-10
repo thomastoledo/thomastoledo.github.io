@@ -1,0 +1,1 @@
+import{a as t,b as e,c as r}from"./chunk-UFN3HTZ7.js";import"./chunk-GWZER3HI.js";var o=r("normal"),a=e(o),n=a.generateWallpaper,c=a.generateWallpaperAsync;export{t as DEFAULT_OPTIONS,n as generateWallpaper,c as generateWallpaperAsync};

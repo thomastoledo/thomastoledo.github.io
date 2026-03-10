@@ -1,0 +1,1 @@
+var d=a=>{throw TypeError(a)};var e=(a,b,c)=>b.has(a)||d("Cannot "+c);var f=(a,b,c)=>(e(a,b,"read from private field"),c?c.call(a):b.get(a)),g=(a,b,c)=>b.has(a)?d("Cannot add the same private member more than once"):b instanceof WeakSet?b.add(a):b.set(a,c);var h=(a,b,c)=>(e(a,b,"access private method"),c);export{f as a,g as b,h as c};

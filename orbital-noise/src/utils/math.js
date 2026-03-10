@@ -1,1 +1,0 @@
-export function randRange(n,t,r){return t+(r-t)*n.float()}export function randInt(n,t,r){return n.int(t,r)}export function clampInt(n,t,r){return n<t?t:n>r?r:n}

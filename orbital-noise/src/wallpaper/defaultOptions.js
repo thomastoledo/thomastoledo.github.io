@@ -1,1 +1,0 @@
-export const DEFAULT_OPTIONS={seed:1234567,width:3840,height:2160,starCount:null,starAvoidMargin:1.1,constellationConnectChance:.55,constellationModules:[3,7],planetCount:[2,4],planetMainRadius:[.11,.18],planetSmallRadius:[.05,.11],ringCount:[2,12],curveCount:[4,10],arrowChance:.2,nebulaChance:.55};

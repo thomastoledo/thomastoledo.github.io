@@ -1,0 +1,1 @@
+import{a,b as e,c as r}from"./chunk-UFN3HTZ7.js";import"./chunk-GWZER3HI.js";var o=r("gold"),t=e(o),n=t.generateWallpaper,c=t.generateWallpaperAsync;export{a as DEFAULT_OPTIONS,n as generateWallpaper,c as generateWallpaperAsync};

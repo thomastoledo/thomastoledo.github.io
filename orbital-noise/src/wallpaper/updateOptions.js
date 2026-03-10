@@ -1,1 +1,0 @@
-import{DEFAULT_OPTIONS as t}from"./defaultOptions.js";export function updateOptions(o={},n){const s={...t,...o};return n.scaleOptions?n.scaleOptions(s):s}

@@ -1,1 +1,0 @@
-export class RNG{constructor(t){this._state=t>>>0}float(){let t=this._state+=1831565813;return t=Math.imul(t^t>>>15,1|t),t^=t+Math.imul(t^t>>>7,61|t),((t^t>>>14)>>>0)/4294967296}int(t,o){return t+Math.floor(this.float()*(o-t+1))|0}bool(t=.5){return this.float()<t}}

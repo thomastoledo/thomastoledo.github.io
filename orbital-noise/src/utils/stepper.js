@@ -1,1 +1,0 @@
-const s=()=>new Promise(s=>{requestAnimationFrame(()=>s())});export class Stepper{constructor(s={}){this.enabled=s.enabled??!1,this.opsPerFrame=Math.max(1,s.opsPerFrame??160),this._ops=0}async tick(e=1){this.enabled&&(this._ops+=e,this._ops>=this.opsPerFrame&&(this._ops=0,await s()))}async yieldNow(){this.enabled&&(this._ops=0,await s())}}
