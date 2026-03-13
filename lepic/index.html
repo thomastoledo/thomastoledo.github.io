@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #000000;
+            height: 100vh;
+            width: 100vw;
+            color: #ffffff;
+            word-wrap: break-word;
+            word-break:keep-all;
+        }
+        .arg-trigger {
+            appearance: none;
+            border: 0;
+            background: none;
+            padding: 0;
+            margin: 0;
+            color: #c7c7c7;
+            font: inherit;
+            font-size: 1.16em;
+            font-weight: 500;
+            line-height: inherit;
+            cursor: pointer;
+        }
+        .arg-trigger:hover,
+        .arg-trigger:focus-visible {
+            color: #c4c4c4;
+            outline: none;
+        }
+
+        main {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 32px;
+            padding-bottom: 80px;
+        }
+        .secret-door {
+            position: fixed;
+            left: 50%;
+            bottom: 10px;
+            width: 28px;
+            height: 28px;
+            transform: translateX(-50%);
+            opacity: 0;
+            pointer-events: none;
+        }
+        .secret-door.is-visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .secret-door__button {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            border: 0;
+            background: none;
+            cursor: pointer;
+        }
+        .secret-door__button:focus-visible {
+            outline: 1px solid rgba(255, 255, 255, 0.55);
+            outline-offset: 3px;
+        }
+        .secret-door__frame {
+            position: absolute;
+            left: 7px;
+            bottom: 5px;
+            width: 10px;
+            height: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.68);
+            border-bottom-color: rgba(255, 255, 255, 0.9);
+            box-sizing: border-box;
+            transform-origin: bottom center;
+            transform: skewX(-6deg) scaleY(0.05);
+            opacity: 0;
+        }
+        .secret-door.is-visible .secret-door__frame {
+            animation: door-draw 800ms cubic-bezier(0.23, 1, 0.32, 1) forwards;
+        }
+        .secret-door__panel {
+            position: absolute;
+            inset: 1px 1px 0 1px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.12));
+            transform-origin: left center;
+            transform: skewX(-6deg) rotateY(-34deg);
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+        }
+        .secret-door__panel::after {
+            content: "";
+            position: absolute;
+            right: 1px;
+            top: 9px;
+            width: 1px;
+            height: 1px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.7);
+        }
+        .secret-door__light {
+            position: absolute;
+            left: 17px;
+            bottom: 5px;
+            width: 14px;
+            height: 4px;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0));
+            transform-origin: left center;
+            transform: skewX(-44deg) scaleX(0);
+            opacity: 0;
+        }
+        .secret-door.is-visible .secret-door__light {
+            animation: light-draw 520ms ease 280ms forwards;
+        }
+        .secret-door.is-closing .secret-door__panel {
+            animation: door-close 480ms ease forwards;
+        }
+        .secret-door.is-closing .secret-door__light {
+            animation: light-fade 320ms ease forwards;
+        }
+        .secret-door.is-gone {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 180ms ease;
+        }
+        .secret-toast {
+            position: fixed;
+            left: 50%;
+            bottom: 42px;
+            transform: translateX(-50%) translateY(6px);
+            padding: 7px 10px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            background: rgba(10, 10, 10, 0.92);
+            color: #f1f1f1;
+            font-size: 12px;
+            letter-spacing: 0.01em;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 180ms ease, transform 180ms ease;
+        }
+        .secret-toast.is-visible {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+        .secret-cache {
+            display: none;
+        }
+        @keyframes door-draw {
+            0% {
+                opacity: 0;
+                transform: skewX(-6deg) scaleY(0.05);
+            }
+            100% {
+                opacity: 1;
+                transform: skewX(-6deg) scaleY(1);
+            }
+        }
+        @keyframes light-draw {
+            0% {
+                opacity: 0;
+                transform: skewX(-44deg) scaleX(0);
+            }
+            100% {
+                opacity: 0.85;
+                transform: skewX(-44deg) scaleX(1);
+            }
+        }
+        @keyframes door-close {
+            0% {
+                transform: skewX(-6deg) rotateY(-34deg);
+            }
+            100% {
+                transform: skewX(0deg) rotateY(0deg);
+            }
+        }
+        @keyframes light-fade {
+            0% {
+                opacity: 0.85;
+                transform: skewX(-44deg) scaleX(1);
+            }
+            100% {
+                opacity: 0;
+                transform: skewX(-44deg) scaleX(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+
+        <p>Congratulations! You've come to the right place! This ARG ends here for now, but there may be more to come very soon!</p>
+        <p>"Lepic Street", or "Rue Lepic" in French, is a street in Paris, France. It is located in the 18th arrondissement.
+    The street is known for its historical significance and its association with the famous artist Vincent van Gogh, who lived there for a period of time. Rue Lepic is also home to several cafes, shops, and residences, making it a popular destination for tourists and locals alike.</p>
+        <p>
+            If you'd like, you can learn more about Lepic Street on <a href="https://en.wikipedia.org/wiki/Rue_Lepic" target="_blank" rel="noopener noreferrer">Rue Lepic on Wikipedia</a>. </br>
+            You can also learn more about Louis Lepic on <a href="https://en.wikipedia.org/wiki/Louis_L%C3%A9pic" target="_blank" rel="noopener noreferrer">Louis Lepic on Wikipedia</a> or even Vincent van Gogh on <a href="https://en.wikipedia.org/wiki/Vincent_van_Gogh" target="_blank" rel="noopener noreferrer">Vincent van Gogh on Wikipedia</a>.
+            By the way, did you know that Van Gogh lived on Lepic Street for a while? He lived at number 54 Rue Lepic from 1886 to 1888, during his time in Paris. This period was significant in his artistic development, as he was exposed to new styles and techniques that influenced his later works.
+        </p><br/>
+        <p>
+            On a side note, if you remember Jupiter and Betelgeuse, you can learn more about them on <a href="https://en.wikipedia.org/wiki/Jupiter" target="_blank" rel="noopener noreferrer">Jupiter on Wikipedia</a> and <a href="https://en.wikipedia.org/wiki/Betelgeuse" target="_blank" rel="noopener noreferrer">Betelgeuse on Wikipedia</a>. <br/>
+            A nice way to remember them is to look at the night sky and find the constellation of Orion, where Betelgeuse is located. Jupiter can be seen with the naked eye and is often one of the brightest objects in the night sky, so keep an eye out for it as well!
+            To observe them more closely, you can use a <button type="button" class="arg-trigger" data-instrument="telescope">telescope</button> or <button type="button" class="arg-trigger" data-instrument="binoculars">binoculars</button>, which will allow you to see more details of Jupiter's cloud bands and its four largest moons (Io, Europa, Ganymede, and Callisto), as well as the reddish hue of Betelgeuse, which is a red supergiant star. Happy stargazing!
+        </p>
+    </main>
+    <script>
+        const closedTemplateMessage = "Sorry, we're closed";
+        const unlockToastMessage = "Some secrets have been unlocked";
+        const backendBaseUrl = window.__ARG_CONFIG__?.backendBaseUrl
+            || window.ARG_BACKEND_BASE_URL
+            || ((window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")
+                ? "http://localhost:8080"
+                : "https://orbital-noise-backend-1aa0a8498a3c.herokuapp.com");
+        const flowStateUrl = `${backendBaseUrl}/void/flow/state`;
+        const flowActionUrl = `${backendBaseUrl}/void/flow/action`;
+        const flowClaimUrl = `${backendBaseUrl}/void/flow/claim`;
+        const legacyDoorsApiBaseUrl = `${backendBaseUrl}/void/doors`;
+        const mainContent = document.querySelector("main");
+        const argTriggers = document.querySelectorAll(".arg-trigger");
+        const argState = {
+            bodyRoot: null,
+            hiddenRoot: null,
+            legacyObserved: false,
+            mode: "unknown",
+            serverDoorSchedule: null,
+            serverDoorLocked: false,
+            claimAvailable: false,
+            claimRequestInFlight: false,
+            pollId: null,
+            requestInFlight: false,
+            secretDoor: null,
+            secretToast: null,
+            toastTimeoutId: null
+        };
+
+        function ensureHiddenRoot() {
+            if (argState.hiddenRoot) {
+                return argState.hiddenRoot;
+            }
+
+            const hiddenRoot = document.createElement("div");
+            hiddenRoot.className = "secret-cache";
+            hiddenRoot.hidden = true;
+            hiddenRoot.dataset.argHiddenRoot = "";
+            document.body.append(hiddenRoot);
+            argState.hiddenRoot = hiddenRoot;
+
+            return hiddenRoot;
+        }
+
+        function ensureBodyRoot() {
+            if (argState.bodyRoot) {
+                return argState.bodyRoot;
+            }
+
+            const bodyRoot = document.createElement("div");
+            bodyRoot.dataset.argBodyRoot = "";
+            mainContent?.after(bodyRoot);
+            argState.bodyRoot = bodyRoot;
+
+            return bodyRoot;
+        }
+
+        function ensureSecretDoor() {
+            if (argState.secretDoor) {
+                return argState.secretDoor;
+            }
+
+            const secretDoor = document.createElement("div");
+            const secretDoorButton = document.createElement("button");
+            const secretDoorFrame = document.createElement("span");
+            const secretDoorPanel = document.createElement("span");
+            const secretDoorLight = document.createElement("span");
+
+            secretDoor.className = "secret-door";
+            secretDoor.hidden = true;
+            secretDoor.dataset.secretDoor = "";
+
+            secretDoorButton.type = "button";
+            secretDoorButton.className = "secret-door__button";
+            secretDoorButton.setAttribute("aria-label", "Open the hidden door");
+
+            secretDoorFrame.className = "secret-door__frame";
+            secretDoorPanel.className = "secret-door__panel";
+            secretDoorLight.className = "secret-door__light";
+
+            secretDoorFrame.append(secretDoorPanel);
+            secretDoorButton.append(secretDoorFrame, secretDoorLight);
+            secretDoor.append(secretDoorButton);
+            secretDoorButton.addEventListener("click", handleDoorOpen);
+
+            document.body.append(secretDoor);
+            argState.secretDoor = secretDoor;
+
+            return secretDoor;
+        }
+
+        function ensureSecretToast() {
+            if (argState.secretToast) {
+                return argState.secretToast;
+            }
+
+            const secretToast = document.createElement("div");
+            secretToast.className = "secret-toast";
+            secretToast.setAttribute("role", "status");
+            secretToast.setAttribute("aria-live", "polite");
+            document.body.append(secretToast);
+            argState.secretToast = secretToast;
+
+            return secretToast;
+        }
+
+        function replaceRootWithHtml(root, fragments) {
+            root.replaceChildren();
+
+            fragments.forEach((fragmentHtml) => {
+                if (typeof fragmentHtml !== "string" || !fragmentHtml.trim()) {
+                    return;
+                }
+
+                const fragmentTemplate = document.createElement("template");
+                fragmentTemplate.innerHTML = fragmentHtml.trim();
+                root.append(fragmentTemplate.content.cloneNode(true));
+            });
+        }
+
+        function renderFragments(fragments) {
+            const hiddenFragments = Array.isArray(fragments?.hidden) ? fragments.hidden : [];
+            const bodyFragments = Array.isArray(fragments?.body) ? fragments.body : [];
+
+            if (hiddenFragments.length) {
+                replaceRootWithHtml(ensureHiddenRoot(), hiddenFragments);
+            } else if (argState.hiddenRoot) {
+                argState.hiddenRoot.replaceChildren();
+            }
+
+            if (bodyFragments.length) {
+                replaceRootWithHtml(ensureBodyRoot(), bodyFragments);
+            } else if (argState.bodyRoot) {
+                argState.bodyRoot.replaceChildren();
+            }
+        }
+
+        function buildHiddenDivFragment(message, index) {
+            const fragment = document.createElement("div");
+            fragment.dataset.secretFragment = String(index);
+            fragment.style.display = "none";
+            fragment.textContent = message;
+            return fragment.outerHTML;
+        }
+
+        function buildClosedFragments() {
+            return [
+                buildHiddenDivFragment(closedTemplateMessage, 0),
+                buildHiddenDivFragment(closedTemplateMessage, 1)
+            ];
+        }
+
+        function buildSecretFragments(messages) {
+            return messages.map((message, index) => buildHiddenDivFragment(message, index));
+        }
+
+        function readJson(response) {
+            return response.text().then((text) => {
+                if (!text) {
+                    return null;
+                }
+
+                try {
+                    return JSON.parse(text);
+                } catch (_error) {
+                    return null;
+                }
+            });
+        }
+
+        function parseSecretMessages(message) {
+            if (typeof message !== "string") {
+                return [];
+            }
+
+            try {
+                const parsedMessages = JSON.parse(message);
+
+                if (Array.isArray(parsedMessages)) {
+                    return parsedMessages
+                        .map((entry) => String(entry).trim())
+                        .filter(Boolean);
+                }
+            } catch (_error) {
+                return [message];
+            }
+
+            return [message];
+        }
+
+        function showToast(message) {
+            if (typeof message !== "string" || !message.trim()) {
+                return;
+            }
+
+            const toast = ensureSecretToast();
+            toast.textContent = message;
+            toast.classList.add("is-visible");
+
+            if (argState.toastTimeoutId) {
+                window.clearTimeout(argState.toastTimeoutId);
+            }
+
+            argState.toastTimeoutId = window.setTimeout(() => {
+                toast.classList.remove("is-visible");
+            }, 2200);
+        }
+
+        function hideDoor() {
+            if (!argState.secretDoor) {
+                return;
+            }
+
+            argState.secretDoor.hidden = true;
+            argState.secretDoor.classList.remove("is-visible", "is-closing", "is-gone");
+        }
+
+        function closeDoor() {
+            const door = argState.secretDoor;
+
+            if (!door) {
+                return;
+            }
+
+            door.classList.add("is-closing");
+
+            window.setTimeout(() => {
+                door.classList.remove("is-visible");
+                door.classList.add("is-gone");
+                door.hidden = true;
+            }, 520);
+        }
+
+        function showDoor() {
+            const door = ensureSecretDoor();
+
+            door.hidden = false;
+            door.classList.remove("is-closing", "is-gone");
+            window.requestAnimationFrame(() => {
+                door.classList.add("is-visible");
+            });
+        }
+
+        function applyUiState(ui, options = {}) {
+            if (!ui || typeof ui !== "object") {
+                return;
+            }
+
+            const allowDoorVisibility = options.allowDoorVisibility !== false;
+
+            if (ui.doorAction === "close") {
+                closeDoor();
+            } else if (allowDoorVisibility) {
+                if (ui.doorVisible === true) {
+                    showDoor();
+                } else if (ui.doorVisible === false) {
+                    hideDoor();
+                }
+            }
+
+            if (typeof ui.toast === "string") {
+                showToast(ui.toast);
+            }
+        }
+
+        function syncServerDoorVisibilityFromSchedule() {
+            if (argState.mode !== "server") {
+                return false;
+            }
+
+            if (argState.serverDoorLocked || !argState.serverDoorSchedule) {
+                hideDoor();
+                return false;
+            }
+
+            const shouldShowDoor = isAnyWindowOpenForUx(
+                argState.serverDoorSchedule.windows,
+                argState.serverDoorSchedule.timezone
+            );
+
+            if (shouldShowDoor) {
+                showDoor();
+                return true;
+            }
+
+            hideDoor();
+            return false;
+        }
+
+        function applyServerPayload(payload) {
+            if (!payload || typeof payload !== "object") {
+                return false;
+            }
+
+            argState.serverDoorSchedule = normalizeDoorSchedule(payload.doorSchedule);
+            argState.claimAvailable = payload.claimAvailable === true;
+
+            if (payload?.ui?.doorAction === "close") {
+                argState.serverDoorLocked = true;
+            } else if (argState.serverDoorSchedule) {
+                argState.serverDoorLocked = false;
+            }
+
+            renderFragments(payload.fragments);
+            applyUiState(payload.ui, { allowDoorVisibility: false });
+            syncServerDoorVisibilityFromSchedule();
+
+            return true;
+        }
+
+        async function fetchServerState() {
+            const response = await fetch(flowStateUrl, {
+                credentials: "include",
+                headers: {
+                    accept: "application/json"
+                }
+            });
+
+            if (!response.ok) {
+                return null;
+            }
+
+            const payload = await readJson(response);
+            return payload && typeof payload === "object" ? payload : null;
+        }
+
+        async function postServerAction(action, extraPayload = {}) {
+            const response = await fetch(flowActionUrl, {
+                method: "POST",
+                credentials: "include",
+                headers: {
+                    "content-type": "application/json",
+                    accept: "application/json"
+                },
+                body: JSON.stringify({
+                    action,
+                    ...extraPayload
+                })
+            });
+            const payload = await readJson(response);
+
+            if (!response.ok || !payload || payload.ok === false) {
+                return null;
+            }
+
+            return payload;
+        }
+
+        async function postServerClaim() {
+            const response = await fetch(flowClaimUrl, {
+                method: "POST",
+                credentials: "include",
+                headers: {
+                    accept: "application/json"
+                }
+            });
+            const payload = await readJson(response);
+
+            if (!response.ok || !payload || payload.ok === false) {
+                return null;
+            }
+
+            return payload;
+        }
+
+        async function claimServerNextIfAvailable() {
+            if (
+                argState.mode !== "server" ||
+                !argState.claimAvailable ||
+                argState.claimRequestInFlight
+            ) {
+                return false;
+            }
+
+            argState.claimRequestInFlight = true;
+            try {
+                const payload = await postServerClaim();
+                if (!payload || !payload.fragments) {
+                    return false;
+                }
+
+                renderFragments(payload.fragments);
+                argState.claimAvailable = false;
+                return true;
+            } catch (_error) {
+                return false;
+            } finally {
+                argState.claimRequestInFlight = false;
+            }
+        }
+
+        async function tryEnableServerFlow() {
+            if (argState.mode === "server") {
+                return true;
+            }
+
+            if (argState.mode === "legacy") {
+                return false;
+            }
+
+            try {
+                const payload = await fetchServerState();
+
+                if (!payload) {
+                    argState.mode = "legacy";
+                    argState.serverDoorSchedule = null;
+                    argState.serverDoorLocked = false;
+                    argState.claimAvailable = false;
+                    return false;
+                }
+
+                argState.mode = "server";
+                applyServerPayload(payload);
+                await claimServerNextIfAvailable();
+                return true;
+            } catch (_error) {
+                argState.mode = "legacy";
+                argState.serverDoorSchedule = null;
+                argState.serverDoorLocked = false;
+                argState.claimAvailable = false;
+                return false;
+            }
+        }
+
+        function startPolling() {
+            if (argState.pollId) {
+                return;
+            }
+
+            argState.pollId = window.setInterval(() => {
+                if (argState.mode === "server") {
+                    syncServerDoorVisibilityFromSchedule();
+                    syncServerState();
+                    return;
+                }
+
+                if (argState.mode === "legacy" && argState.legacyObserved) {
+                    syncLegacyDoorVisibility();
+                }
+            }, 60000);
+        }
+
+        async function syncServerState() {
+            if (argState.mode !== "server") {
+                return false;
+            }
+
+            try {
+                const payload = await fetchServerState();
+
+                if (!payload) {
+                    return false;
+                }
+
+                applyServerPayload(payload);
+                await claimServerNextIfAvailable();
+                return true;
+            } catch (_error) {
+                return false;
+            }
+        }
+
+        function getUtcOffsetMinutes(timezone) {
+            if (typeof timezone !== "string") {
+                return null;
+            }
+
+            const match = timezone.trim().match(/^utc\s*([+-])\s*(\d{1,2})(?::?(\d{2}))?$/i);
+
+            if (!match) {
+                return null;
+            }
+
+            const sign = match[1] === "-" ? -1 : 1;
+            const hours = Number.parseInt(match[2], 10);
+            const minutes = Number.parseInt(match[3] ?? "0", 10);
+
+            if (Number.isNaN(hours) || Number.isNaN(minutes)) {
+                return null;
+            }
+
+            return sign * (hours * 60 + minutes);
+        }
+
+        function getTimePartsInTimezone(date, timezone) {
+            const utcOffsetMinutes = getUtcOffsetMinutes(timezone);
+
+            if (utcOffsetMinutes !== null) {
+                const utcDate = new Date(date.getTime() + (date.getTimezoneOffset() * 60000));
+                const shiftedDate = new Date(utcDate.getTime() + (utcOffsetMinutes * 60000));
+
+                return {
+                    hour: shiftedDate.getUTCHours(),
+                    minute: shiftedDate.getUTCMinutes()
+                };
+            }
+
+            try {
+                const formatter = new Intl.DateTimeFormat("en-GB", {
+                    timeZone: timezone,
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    hourCycle: "h23"
+                });
+                const parts = formatter.formatToParts(date);
+                const hour = Number.parseInt(parts.find((part) => part.type === "hour")?.value ?? "", 10);
+                const minute = Number.parseInt(parts.find((part) => part.type === "minute")?.value ?? "", 10);
+
+                if (!Number.isNaN(hour) && !Number.isNaN(minute)) {
+                    return { hour, minute };
+                }
+            } catch (_error) {
+                // Fallback below keeps the legacy UX working if the timezone cannot be parsed locally.
+            }
+
+            return {
+                hour: date.getHours(),
+                minute: date.getMinutes()
+            };
+        }
+
+        function isClockTime(value) {
+            return typeof value === "string" && /^\d{2}:\d{2}$/.test(value);
+        }
+
+        function parseClockTime(value) {
+            if (!isClockTime(value)) {
+                return null;
+            }
+
+            const [hourPart, minutePart] = value.split(":");
+            const hour = Number.parseInt(hourPart ?? "", 10);
+            const minute = Number.parseInt(minutePart ?? "", 10);
+
+            if (Number.isNaN(hour) || Number.isNaN(minute) || hour > 23 || minute > 59) {
+                return null;
+            }
+
+            return (hour * 60) + minute;
+        }
+
+        function formatClockTime(totalMinutes) {
+            const normalized = ((totalMinutes % 1440) + 1440) % 1440;
+            const hour = Math.floor(normalized / 60);
+            const minute = normalized % 60;
+            return `${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}`;
+        }
+
+        function normalizeDoorSchedule(payload) {
+            if (!payload || typeof payload !== "object") {
+                return null;
+            }
+
+            const timezone = typeof payload.timezone === "string" ? payload.timezone : null;
+            if (!timezone) {
+                return null;
+            }
+
+            const windows = [];
+            const rawWindows = Array.isArray(payload.windows) ? payload.windows : [];
+            rawWindows.forEach((rawWindow) => {
+                if (!rawWindow || typeof rawWindow !== "object") {
+                    return;
+                }
+
+                const opensAt = typeof rawWindow.opensAt === "string" ? rawWindow.opensAt : null;
+                const closesAt = typeof rawWindow.closesAt === "string" ? rawWindow.closesAt : null;
+                if (isClockTime(opensAt) && isClockTime(closesAt)) {
+                    windows.push({ opensAt, closesAt });
+                }
+            });
+
+            if (!windows.length) {
+                const openings = Array.isArray(payload.openingHours) ? payload.openingHours : [];
+                const closings = Array.isArray(payload.closingHours) ? payload.closingHours : [];
+                if (openings.length && openings.length === closings.length) {
+                    openings.forEach((opensAt, index) => {
+                        const closesAt = closings[index];
+                        if (isClockTime(opensAt) && isClockTime(closesAt)) {
+                            windows.push({ opensAt, closesAt });
+                        }
+                    });
+                }
+            }
+
+            if (!windows.length) {
+                const legacyDoors = Array.isArray(payload.doors) ? payload.doors : [];
+                legacyDoors.forEach((doorTime) => {
+                    const startsAtMinutes = parseClockTime(doorTime);
+                    if (startsAtMinutes === null) {
+                        return;
+                    }
+
+                    windows.push({
+                        opensAt: formatClockTime(startsAtMinutes),
+                        closesAt: formatClockTime(startsAtMinutes + 60)
+                    });
+                });
+            }
+
+            if (!windows.length) {
+                return null;
+            }
+
+            return { timezone, windows };
+        }
+
+        function isWindowOpenForUx(window, timezone) {
+            const startMinute = parseClockTime(window?.opensAt);
+            const endMinute = parseClockTime(window?.closesAt);
+            if (startMinute === null || endMinute === null) {
+                return false;
+            }
+
+            const now = getTimePartsInTimezone(new Date(), timezone);
+            const currentTotalMinutes = (now.hour * 60) + now.minute;
+
+            if (startMinute < endMinute) {
+                return currentTotalMinutes >= startMinute && currentTotalMinutes < endMinute;
+            }
+
+            if (startMinute > endMinute) {
+                return currentTotalMinutes >= startMinute || currentTotalMinutes < endMinute;
+            }
+
+            return false;
+        }
+
+        function isAnyWindowOpenForUx(windows, timezone) {
+            if (!Array.isArray(windows) || typeof timezone !== "string") {
+                return false;
+            }
+
+            return windows.some((window) => isWindowOpenForUx(window, timezone));
+        }
+
+        async function observeLegacyInstrument(instrument) {
+            const response = await fetch(`${legacyDoorsApiBaseUrl}/observe`, {
+                method: "POST",
+                credentials: "include",
+                headers: {
+                    "content-type": "application/json",
+                    accept: "application/json"
+                },
+                body: JSON.stringify({ instrument })
+            });
+
+            if (!response.ok) {
+                throw new Error("observe_failed");
+            }
+
+            const payload = await readJson(response);
+
+            if (!payload?.ok) {
+                throw new Error("observe_rejected");
+            }
+        }
+
+        async function syncLegacyDoorVisibility() {
+            if (!argState.legacyObserved) {
+                hideDoor();
+                return false;
+            }
+
+            try {
+                const response = await fetch(legacyDoorsApiBaseUrl, {
+                    headers: {
+                        accept: "application/json"
+                    }
+                });
+
+                if (!response.ok) {
+                    return false;
+                }
+
+                const payload = await readJson(response);
+                const schedule = normalizeDoorSchedule(payload);
+                const shouldShowDoor = Boolean(
+                    schedule && isAnyWindowOpenForUx(schedule.windows, schedule.timezone)
+                );
+
+                if (shouldShowDoor) {
+                    showDoor();
+                    return true;
+                }
+
+                hideDoor();
+                return false;
+            } catch (_error) {
+                return false;
+            }
+        }
+
+        async function handleLegacyObserve(instrument) {
+            await observeLegacyInstrument(instrument);
+            argState.legacyObserved = true;
+            renderFragments({ hidden: buildClosedFragments() });
+            startPolling();
+            await syncLegacyDoorVisibility();
+        }
+
+        async function handleLegacyOpen() {
+            const response = await fetch(`${legacyDoorsApiBaseUrl}/open`, {
+                method: "POST",
+                credentials: "include",
+                headers: {
+                    accept: "application/json"
+                }
+            });
+            const payload = await readJson(response);
+
+            if (!response.ok || !payload?.open) {
+                renderFragments({ hidden: buildClosedFragments() });
+                applyUiState({
+                    doorAction: "close",
+                    doorVisible: false,
+                    toast: typeof payload?.message === "string" ? payload.message : closedTemplateMessage
+                });
+                return;
+            }
+
+            const secretMessages = parseSecretMessages(payload.message);
+            const secretFragments = buildSecretFragments(
+                secretMessages.length ? secretMessages : [String(payload.message ?? "")]
+            );
+
+            renderFragments({ hidden: secretFragments });
+            applyUiState({
+                doorAction: "close",
+                doorVisible: false,
+                toast: unlockToastMessage
+            });
+        }
+
+        async function handleObserveTrigger(instrument) {
+            if (argState.requestInFlight) {
+                return;
+            }
+
+            argState.requestInFlight = true;
+
+            try {
+                if (await tryEnableServerFlow()) {
+                    const payload = await postServerAction("observe", { instrument });
+
+                    if (!payload || !applyServerPayload(payload)) {
+                        throw new Error("server_observe_failed");
+                    }
+
+                    startPolling();
+                    return;
+                }
+
+                await handleLegacyObserve(instrument);
+            } catch (_error) {
+                showToast("Observation could not be recorded");
+            } finally {
+                argState.requestInFlight = false;
+            }
+        }
+
+        async function handleDoorOpen() {
+            if (argState.requestInFlight) {
+                return;
+            }
+
+            argState.requestInFlight = true;
+
+            try {
+                if (await tryEnableServerFlow()) {
+                    const payload = await postServerAction("open", { instrument: null });
+
+                    if (!payload || !applyServerPayload(payload)) {
+                        throw new Error("server_open_failed");
+                    }
+
+                    await claimServerNextIfAvailable();
+                    startPolling();
+                    return;
+                }
+
+                await handleLegacyOpen();
+            } catch (_error) {
+                renderFragments({ hidden: buildClosedFragments() });
+                applyUiState({
+                    doorAction: "close",
+                    doorVisible: false,
+                    toast: closedTemplateMessage
+                });
+            } finally {
+                argState.requestInFlight = false;
+            }
+        }
+
+        argTriggers.forEach((trigger) => {
+            trigger.addEventListener("click", async () => {
+                await handleObserveTrigger(trigger.dataset.instrument);
+            });
+        });
+
+        tryEnableServerFlow().then((serverReady) => {
+            if (serverReady) {
+                startPolling();
+            }
+        });
+    </script>
+</body>
+
+</html>
