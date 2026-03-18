@@ -221,13 +221,11 @@
         const flowStateUrl = `${backendBaseUrl}/void/flow/state`;
         const flowActionUrl = `${backendBaseUrl}/void/flow/action`;
         const flowClaimUrl = `${backendBaseUrl}/void/flow/claim`;
-        const legacyDoorsApiBaseUrl = `${backendBaseUrl}/void/doors`;
         const mainContent = document.querySelector("main");
         const argTriggers = document.querySelectorAll(".arg-trigger");
         const argState = {
             bodyRoot: null,
             hiddenRoot: null,
-            legacyObserved: false,
             mode: "unknown",
             serverDoorSchedule: null,
             serverDoorLocked: false,
@@ -363,10 +361,6 @@
             ];
         }
 
-        function buildSecretFragments(messages) {
-            return messages.map((message, index) => buildHiddenDivFragment(message, index));
-        }
-
         function readJson(response) {
             return response.text().then((text) => {
                 if (!text) {
@@ -379,26 +373,6 @@
                     return null;
                 }
             });
-        }
-
-        function parseSecretMessages(message) {
-            if (typeof message !== "string") {
-                return [];
-            }
-
-            try {
-                const parsedMessages = JSON.parse(message);
-
-                if (Array.isArray(parsedMessages)) {
-                    return parsedMessages
-                        .map((entry) => String(entry).trim())
-                        .filter(Boolean);
-                }
-            } catch (_error) {
-                return [message];
-            }
-
-            return [message];
         }
 
         function showToast(message) {
@@ -607,15 +581,11 @@
                 return true;
             }
 
-            if (argState.mode === "legacy") {
-                return false;
-            }
-
             try {
                 const payload = await fetchServerState();
 
                 if (!payload) {
-                    argState.mode = "legacy";
+                    argState.mode = "unknown";
                     argState.serverDoorSchedule = null;
                     argState.serverDoorLocked = false;
                     argState.claimAvailable = false;
@@ -627,7 +597,7 @@
                 await claimServerNextIfAvailable();
                 return true;
             } catch (_error) {
-                argState.mode = "legacy";
+                argState.mode = "unknown";
                 argState.serverDoorSchedule = null;
                 argState.serverDoorLocked = false;
                 argState.claimAvailable = false;
@@ -644,11 +614,6 @@
                 if (argState.mode === "server") {
                     syncServerDoorVisibilityFromSchedule();
                     syncServerState();
-                    return;
-                }
-
-                if (argState.mode === "legacy" && argState.legacyObserved) {
-                    syncLegacyDoorVisibility();
                 }
             }, 60000);
         }
@@ -723,7 +688,7 @@
                     return { hour, minute };
                 }
             } catch (_error) {
-                // Fallback below keeps the legacy UX working if the timezone cannot be parsed locally.
+                // Keep the door timing UX working even if the named timezone cannot be parsed locally.
             }
 
             return {
@@ -750,13 +715,6 @@
             }
 
             return (hour * 60) + minute;
-        }
-
-        function formatClockTime(totalMinutes) {
-            const normalized = ((totalMinutes % 1440) + 1440) % 1440;
-            const hour = Math.floor(normalized / 60);
-            const minute = normalized % 60;
-            return `${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}`;
         }
 
         function normalizeDoorSchedule(payload) {
@@ -797,21 +755,6 @@
             }
 
             if (!windows.length) {
-                const legacyDoors = Array.isArray(payload.doors) ? payload.doors : [];
-                legacyDoors.forEach((doorTime) => {
-                    const startsAtMinutes = parseClockTime(doorTime);
-                    if (startsAtMinutes === null) {
-                        return;
-                    }
-
-                    windows.push({
-                        opensAt: formatClockTime(startsAtMinutes),
-                        closesAt: formatClockTime(startsAtMinutes + 60)
-                    });
-                });
-            }
-
-            if (!windows.length) {
                 return null;
             }
 
@@ -847,104 +790,6 @@
             return windows.some((window) => isWindowOpenForUx(window, timezone));
         }
 
-        async function observeLegacyInstrument(instrument) {
-            const response = await fetch(`${legacyDoorsApiBaseUrl}/observe`, {
-                method: "POST",
-                credentials: "include",
-                headers: {
-                    "content-type": "application/json",
-                    accept: "application/json"
-                },
-                body: JSON.stringify({ instrument })
-            });
-
-            if (!response.ok) {
-                throw new Error("observe_failed");
-            }
-
-            const payload = await readJson(response);
-
-            if (!payload?.ok) {
-                throw new Error("observe_rejected");
-            }
-        }
-
-        async function syncLegacyDoorVisibility() {
-            if (!argState.legacyObserved) {
-                hideDoor();
-                return false;
-            }
-
-            try {
-                const response = await fetch(legacyDoorsApiBaseUrl, {
-                    headers: {
-                        accept: "application/json"
-                    }
-                });
-
-                if (!response.ok) {
-                    return false;
-                }
-
-                const payload = await readJson(response);
-                const schedule = normalizeDoorSchedule(payload);
-                const shouldShowDoor = Boolean(
-                    schedule && isAnyWindowOpenForUx(schedule.windows, schedule.timezone)
-                );
-
-                if (shouldShowDoor) {
-                    showDoor();
-                    return true;
-                }
-
-                hideDoor();
-                return false;
-            } catch (_error) {
-                return false;
-            }
-        }
-
-        async function handleLegacyObserve(instrument) {
-            await observeLegacyInstrument(instrument);
-            argState.legacyObserved = true;
-            renderFragments({ hidden: buildClosedFragments() });
-            startPolling();
-            await syncLegacyDoorVisibility();
-        }
-
-        async function handleLegacyOpen() {
-            const response = await fetch(`${legacyDoorsApiBaseUrl}/open`, {
-                method: "POST",
-                credentials: "include",
-                headers: {
-                    accept: "application/json"
-                }
-            });
-            const payload = await readJson(response);
-
-            if (!response.ok || !payload?.open) {
-                renderFragments({ hidden: buildClosedFragments() });
-                applyUiState({
-                    doorAction: "close",
-                    doorVisible: false,
-                    toast: typeof payload?.message === "string" ? payload.message : closedTemplateMessage
-                });
-                return;
-            }
-
-            const secretMessages = parseSecretMessages(payload.message);
-            const secretFragments = buildSecretFragments(
-                secretMessages.length ? secretMessages : [String(payload.message ?? "")]
-            );
-
-            renderFragments({ hidden: secretFragments });
-            applyUiState({
-                doorAction: "close",
-                doorVisible: false,
-                toast: unlockToastMessage
-            });
-        }
-
         async function handleObserveTrigger(instrument) {
             if (argState.requestInFlight) {
                 return;
@@ -953,18 +798,17 @@
             argState.requestInFlight = true;
 
             try {
-                if (await tryEnableServerFlow()) {
-                    const payload = await postServerAction("observe", { instrument });
-
-                    if (!payload || !applyServerPayload(payload)) {
-                        throw new Error("server_observe_failed");
-                    }
-
-                    startPolling();
-                    return;
+                if (!await tryEnableServerFlow()) {
+                    throw new Error("server_state_unavailable");
                 }
 
-                await handleLegacyObserve(instrument);
+                const payload = await postServerAction("observe", { instrument });
+
+                if (!payload || !applyServerPayload(payload)) {
+                    throw new Error("server_observe_failed");
+                }
+
+                startPolling();
             } catch (_error) {
                 showToast("Observation could not be recorded");
             } finally {
@@ -980,19 +824,18 @@
             argState.requestInFlight = true;
 
             try {
-                if (await tryEnableServerFlow()) {
-                    const payload = await postServerAction("open", { instrument: null });
-
-                    if (!payload || !applyServerPayload(payload)) {
-                        throw new Error("server_open_failed");
-                    }
-
-                    await claimServerNextIfAvailable();
-                    startPolling();
-                    return;
+                if (!await tryEnableServerFlow()) {
+                    throw new Error("server_state_unavailable");
                 }
 
-                await handleLegacyOpen();
+                const payload = await postServerAction("open", { instrument: null });
+
+                if (!payload || !applyServerPayload(payload)) {
+                    throw new Error("server_open_failed");
+                }
+
+                await claimServerNextIfAvailable();
+                startPolling();
             } catch (_error) {
                 renderFragments({ hidden: buildClosedFragments() });
                 applyUiState({
