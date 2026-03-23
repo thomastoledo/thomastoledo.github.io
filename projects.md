@@ -12,6 +12,8 @@ This page is a showcase of side‑hustle hacks, experiments, and tinkering that 
 I like to code procedural art generators (I'm an artist, go check [Atelier Toledo](https://www.ateliertoledo.fr)). Here are my art generators.
 
 - [Orbital Noise](/orbital-noise/)
+
+## Encryption
 - [Steganova](/steganova/)
 - [Witness Cipher](https://witness-cipher-c675b308b501.herokuapp.com/)
 
