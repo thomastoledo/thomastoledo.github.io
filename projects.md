@@ -12,6 +12,7 @@ This page is a showcase of side‑hustle hacks, experiments, and tinkering that 
 I like to code procedural art generators (I'm an artist, go check [Atelier Toledo](https://www.ateliertoledo.fr)). Here are my art generators.
 
 - [Orbital Noise](/orbital-noise/)
+- [Steganova](/steganova/)
 
 ## Micro-libraries
 Just for the sake of it, I like to develop micro-libraries.
