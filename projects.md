@@ -13,7 +13,8 @@ I like to code procedural art generators (I'm an artist, go check [Atelier Toled
 
 - [Orbital Noise](/orbital-noise/)
 
-## Encryption
+
+## Encryption
 - [Steganova](/steganova/)
 - [Witness Cipher](https://witness-cipher-c675b308b501.herokuapp.com/)
 
