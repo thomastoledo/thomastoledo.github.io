@@ -8,7 +8,7 @@ permalink: /projects/
 Welcome to a little corner where I collect my weird, wonderful, and downright odd projects.  
 This page is a showcase of side‑hustle hacks, experiments, and tinkering that didn’t fit anywhere else—feel free to browse and get inspired.
 
-## Presentations and talks
+## Presentations and talks
 - [You probably don't need NgRx](/you-probably-dont-need-ngrx/)
 
 ## Art Generators
