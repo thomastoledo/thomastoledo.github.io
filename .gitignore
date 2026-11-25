@@ -4,3 +4,5 @@ _site
 .jekyll-metadata
 vendor
 .DS_Store
+# Readable source of lepic, kept out of the public site
+.lepic-src/
