@@ -221,6 +221,9 @@
         const flowStateUrl = `${backendBaseUrl}/void/flow/state`;
         const flowActionUrl = `${backendBaseUrl}/void/flow/action`;
         const flowClaimUrl = `${backendBaseUrl}/void/flow/claim`;
+        // Echoed in a header because browsers that block third-party cookies drop the session cookie.
+        const flowSessionHeaderName = "X-Void-Flow-Session";
+        const flowSessionStorageKey = "void-flow-session";
         const mainContent = document.querySelector("main");
         const argTriggers = document.querySelectorAll(".arg-trigger");
         const argState = {
@@ -235,7 +238,8 @@
             requestInFlight: false,
             secretDoor: null,
             secretToast: null,
-            toastTimeoutId: null
+            toastTimeoutId: null,
+            flowSessionToken: null
         };
 
         function ensureHiddenRoot() {
@@ -359,6 +363,32 @@
                 buildHiddenDivFragment(closedTemplateMessage, 0),
                 buildHiddenDivFragment(closedTemplateMessage, 1)
             ];
+        }
+
+        function readFlowSessionToken() {
+            try {
+                return window.sessionStorage.getItem(flowSessionStorageKey) || argState.flowSessionToken;
+            } catch (_error) {
+                return argState.flowSessionToken;
+            }
+        }
+
+        function rememberFlowSessionToken(payload) {
+            if (typeof payload?.sessionToken !== "string" || !payload.sessionToken) {
+                return;
+            }
+
+            argState.flowSessionToken = payload.sessionToken;
+            try {
+                window.sessionStorage.setItem(flowSessionStorageKey, payload.sessionToken);
+            } catch (_error) {
+                // The in-memory token still carries the session for this page view.
+            }
+        }
+
+        function buildFlowHeaders(headers) {
+            const sessionToken = readFlowSessionToken();
+            return sessionToken ? { ...headers, [flowSessionHeaderName]: sessionToken } : headers;
         }
 
         function readJson(response) {
@@ -498,9 +528,9 @@
         async function fetchServerState() {
             const response = await fetch(flowStateUrl, {
                 credentials: "include",
-                headers: {
+                headers: buildFlowHeaders({
                     accept: "application/json"
-                }
+                })
             });
 
             if (!response.ok) {
@@ -508,6 +538,7 @@
             }
 
             const payload = await readJson(response);
+            rememberFlowSessionToken(payload);
             return payload && typeof payload === "object" ? payload : null;
         }
 
@@ -515,16 +546,17 @@
             const response = await fetch(flowActionUrl, {
                 method: "POST",
                 credentials: "include",
-                headers: {
+                headers: buildFlowHeaders({
                     "content-type": "application/json",
                     accept: "application/json"
-                },
+                }),
                 body: JSON.stringify({
                     action,
                     ...extraPayload
                 })
             });
             const payload = await readJson(response);
+            rememberFlowSessionToken(payload);
 
             if (!response.ok || !payload || payload.ok === false) {
                 return null;
@@ -537,11 +569,12 @@
             const response = await fetch(flowClaimUrl, {
                 method: "POST",
                 credentials: "include",
-                headers: {
+                headers: buildFlowHeaders({
                     accept: "application/json"
-                }
+                })
             });
             const payload = await readJson(response);
+            rememberFlowSessionToken(payload);
 
             if (!response.ok || !payload || payload.ok === false) {
                 return null;
@@ -664,8 +697,8 @@
             const utcOffsetMinutes = getUtcOffsetMinutes(timezone);
 
             if (utcOffsetMinutes !== null) {
-                const utcDate = new Date(date.getTime() + (date.getTimezoneOffset() * 60000));
-                const shiftedDate = new Date(utcDate.getTime() + (utcOffsetMinutes * 60000));
+                // getTime() is already UTC: adding the browser's own offset would shift it twice.
+                const shiftedDate = new Date(date.getTime() + (utcOffsetMinutes * 60000));
 
                 return {
                     hour: shiftedDate.getUTCHours(),
